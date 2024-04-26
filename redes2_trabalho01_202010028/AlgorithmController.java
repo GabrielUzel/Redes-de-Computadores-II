@@ -56,6 +56,9 @@ public class AlgorithmController implements Initializable {
     private Label packageArrivedLabel;
 
     @FXML
+    private Label packagesCounterLabel;
+
+    @FXML
     void backToMenu(ActionEvent event) {
         Principal.changeSceneMenu();
     }
@@ -106,17 +109,17 @@ public class AlgorithmController implements Initializable {
             node8.addNeighbor(node9);
     
             Package firstPackage = new Package(1, 9);
-            node1.sendPackage(firstPackage);
+            // node1.sendPackage(firstPackage);
         } else if(optionLabel.getText().equals("Option 2")) {
-            Node2 node1 = new Node2(1, 46, 379, icon1, packageArrivedLabel);
-            Node2 node2 = new Node2(2, 198, 204, icon2, packageArrivedLabel);
-            Node2 node3 = new Node2(3, 199, 529, icon3, packageArrivedLabel);
-            Node2 node4 = new Node2(4, 350, 379, icon4, packageArrivedLabel);
-            Node2 node5 = new Node2(5, 554, 529, icon5, packageArrivedLabel);
-            Node2 node6 = new Node2(6, 554, 204, icon6, packageArrivedLabel);
-            Node2 node7 = new Node2(7, 554, 379, icon7, packageArrivedLabel);
-            Node2 node8 = new Node2(8, 704, 474, icon8, packageArrivedLabel);
-            Node2 node9 = new Node2(9, 826, 379, icon9, packageArrivedLabel);
+            Node2 node1 = new Node2(1, 46, 379, icon1, packageArrivedLabel, packagesCounterLabel);
+            Node2 node2 = new Node2(2, 198, 204, icon2, packageArrivedLabel, packagesCounterLabel);
+            Node2 node3 = new Node2(3, 199, 529, icon3, packageArrivedLabel, packagesCounterLabel);
+            Node2 node4 = new Node2(4, 350, 379, icon4, packageArrivedLabel, packagesCounterLabel);
+            Node2 node5 = new Node2(5, 554, 529, icon5, packageArrivedLabel, packagesCounterLabel);
+            Node2 node6 = new Node2(6, 554, 204, icon6, packageArrivedLabel, packagesCounterLabel);
+            Node2 node7 = new Node2(7, 554, 379, icon7, packageArrivedLabel, packagesCounterLabel);
+            Node2 node8 = new Node2(8, 704, 474, icon8, packageArrivedLabel, packagesCounterLabel);
+            Node2 node9 = new Node2(9, 826, 379, icon9, packageArrivedLabel, packagesCounterLabel);
 
             node1.addNeighbor(node2);
             node1.addNeighbor(node3);
@@ -151,7 +154,17 @@ public class AlgorithmController implements Initializable {
             node8.addNeighbor(node9);
     
             Package firstPackage = new Package(1, 9);
-            node1.sendPackage(firstPackage);
+            node1.setPackage(firstPackage);
+
+            node1.start();
+            node2.start();
+            node3.start();
+            node4.start();
+            node5.start();
+            node6.start();
+            node7.start();
+            node8.start();
+            node9.start();
         } else if(optionLabel.getText().equals("Option 3")) {
             Node3 node1 = new Node3(1, 46, 379, icon1, packageArrivedLabel);
             Node3 node2 = new Node3(2, 198, 204, icon2, packageArrivedLabel);

@@ -38,12 +38,12 @@ public class Node1 {
 
     public void sendPackage(Package packageReceived) {
         for(Node1 neighbor : neighbors) {
-            Package newPackage = new Package(this.id, packageReceived.getReceiverId());
-            newPackage.setSenderCoordinates(this.getCoordinates());
-            newPackage.setNeighborCoordinates(neighbor.getCoordinates());
-            newPackage.setIcon(this.icon);
-            newPackage.start();
-            neighbor.receivePackage(packageReceived);
+            // Package newPackage = new Package(this.id, packageReceived.getReceiverId());
+            // newPackage.setSenderCoordinates(this.getCoordinates());
+            // newPackage.setNeighborCoordinates(neighbor.getCoordinates());
+            // newPackage.setIcon(this.icon);
+            // newPackage.start();
+            // neighbor.receivePackage(packageReceived);
         }
     }
 

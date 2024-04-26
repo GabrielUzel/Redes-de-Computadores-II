@@ -42,12 +42,12 @@ public class Node3 {
                 Package.ttl--;
                 
                 if(Package.ttl != 0) {
-                    Package newPackage = new Package(this.id, packageReceived.getReceiverId());
-                    newPackage.setSenderCoordinates(this.getCoordinates());
-                    newPackage.setNeighborCoordinates(neighbor.getCoordinates());
-                    newPackage.setIcon(this.icon);
-                    newPackage.start();
-                    neighbor.receivePackage(packageReceived);
+                    // Package newPackage = new Package(this.id, packageReceived.getReceiverId());
+                    // newPackage.setSenderCoordinates(this.getCoordinates());
+                    // newPackage.setNeighborCoordinates(neighbor.getCoordinates());
+                    // newPackage.setIcon(this.icon);
+                    // newPackage.start();
+                    // neighbor.receivePackage(packageReceived);
                 } 
             }
         }

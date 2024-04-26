@@ -1,9 +1,8 @@
 package Models;
 
-import java.util.concurrent.Semaphore;
-
-import javafx.animation.TranslateTransition;
 import javafx.scene.image.ImageView;
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.util.Duration;
 
 public class Package extends Thread {
@@ -14,26 +13,20 @@ public class Package extends Thread {
     private int[] neighborCoordinates;
     private ImageView icon;
     public static int ttl = 50;
-    private static Semaphore mutex = new Semaphore(1);
+    public static boolean arrived = false;
 
     public Package(int senderId, int receiverId) {
         this.senderId = senderId;
         this.receiverId = receiverId;
-        this.ttl = 5;
     }
 
     @Override
     public void run() {
-        try {
-            mutex.acquire();
-            packageCounter++;
-            mutex.release();
-            System.out.println("Pacotes enviados: " + packageCounter);
+        Platform.runLater(() -> {
             iconAnimation();
-            Thread.sleep(4000);
-        } catch(InterruptedException e) {
-            System.out.println("ERROR");
-        }
+        });
+        packageCounter++;
+        System.out.println("Pacotes enviados: " + packageCounter);
     }
 
     public void iconAnimation() {
