@@ -20,17 +20,14 @@ public class Principal extends Application {
     @Override
     public void start (Stage currentStage) throws IOException {
         MenuController controller = new MenuController();
-        Option1Controller controller1 = new Option1Controller();
-        Option2Controller controller2 = new Option2Controller();
-        Option3Controller controller3 = new Option3Controller();
-        Option4Controller controller4 = new Option4Controller();
+        AlgorithmController controller1 = new AlgorithmController();
         stage = currentStage;
 
-        Parent menuParent = FXMLLoader.load(getClass().getResource("Pages/menuPage.fxml"));
-        Parent option1Parent = FXMLLoader.load(getClass().getResource("Pages/option1Page.fxml"));
-        Parent option2Parent = FXMLLoader.load(getClass().getResource("Pages/option2Page.fxml"));
-        Parent option3Parent = FXMLLoader.load(getClass().getResource("Pages/option3Page.fxml"));
-        Parent option4Parent = FXMLLoader.load(getClass().getResource("Pages/option4Page.fxml"));
+        Parent menuParent = FXMLLoader.load(getClass().getResource("Pages/MenuPage.fxml"));
+        Parent option1Parent = FXMLLoader.load(getClass().getResource("Pages/Option1Page.fxml"));
+        Parent option2Parent = FXMLLoader.load(getClass().getResource("Pages/Option2Page.fxml"));
+        Parent option3Parent = FXMLLoader.load(getClass().getResource("Pages/Option3Page.fxml"));
+        Parent option4Parent = FXMLLoader.load(getClass().getResource("Pages/Option4Page.fxml"));
 
         menuScene = new Scene(menuParent);
         option1Scene = new Scene(option1Parent);
