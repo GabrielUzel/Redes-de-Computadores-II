@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AlgorithmController">
+   <children>
+      <Label fx:id="optionLabel" layoutX="406.0" layoutY="49.0" prefHeight="43.0" prefWidth="97.0" text="Option 1" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="404.0" fitWidth="857.0" layoutX="25.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Grafo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="backToMenu" layoutX="8.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToMenu" prefHeight="40.0" prefWidth="85.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="startButton" layoutX="382.0" layoutY="636.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startAlgorithm" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Iniciar" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="packageArrivedLabel" layoutX="739.0" layoutY="303.0" text="Ainda não chegou ao destino" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="packagesCounterLabel" layoutX="136.0" layoutY="646.0" text="Pacotes enviados: 0" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="icon1to2" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon1to3" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon2to1" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon2to4" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon2to6" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon3to1" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon3to4" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon3to5" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon4to2" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon4to3" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon4to5" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon4to7" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon5to3" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon5to4" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon5to8" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon6to2" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon6to7" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon6to9" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon7to4" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon7to6" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon7to8" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon8to5" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon8to7" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon8to9" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon9to6" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="icon9to8" fitHeight="43.0" fitWidth="44.0" layoutX="20.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

@@ -17,7 +17,7 @@
       </Label>
       <ImageView fitHeight="404.0" fitWidth="857.0" layoutX="15.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Views/Grafo.png" />
+            <Image url="@../img/Grafo.png" />
          </image>
       </ImageView>
       <Button fx:id="option1Button" layoutX="64.0" layoutY="611.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openOption1" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Opção 1" textFill="WHITE">
@@ -40,6 +40,10 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <fx:define>
+         <Image fx:id="btnImage" url="@img/Exclamationmark.png" />
+      </fx:define>
+      <Button fx:id="showMessageButton" layoutX="837.0" layoutY="21.0" mnemonicParsing="false" onAction="#showMessage" style="-fx-background-color: none; -fx-cursor: hand;" />
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

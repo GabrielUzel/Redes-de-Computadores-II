@@ -1,7 +1,7 @@
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-import Models.*;
-import Models.Package;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,31 +26,31 @@ public class AlgorithmController implements Initializable {
     private Button stopButton;
 
     @FXML
-    private ImageView icon1;
+    private ImageView icon1to2, icon1to3;
 
     @FXML
-    private ImageView icon2;
+    private ImageView icon2to1, icon2to4, icon2to6;
 
     @FXML
-    private ImageView icon3;
-    
-    @FXML
-    private ImageView icon4;
+    private ImageView icon3to1, icon3to4, icon3to5;
 
     @FXML
-    private ImageView icon5;
+    private ImageView icon4to2, icon4to3, icon4to5, icon4to7;
 
     @FXML
-    private ImageView icon6;
+    private ImageView icon5to3, icon5to4, icon5to8;
 
     @FXML
-    private ImageView icon7;
+    private ImageView icon6to2, icon6to7, icon6to9;
 
     @FXML
-    private ImageView icon8;
+    private ImageView icon7to4, icon7to6, icon7to8;
 
     @FXML
-    private ImageView icon9;
+    private ImageView icon8to5, icon8to7, icon8to9;
+
+    @FXML
+    private ImageView icon9to6, icon9to8;
 
     @FXML
     private Label packageArrivedLabel;
@@ -65,219 +65,154 @@ public class AlgorithmController implements Initializable {
 
     @FXML
     void startAlgorithm(ActionEvent event) throws InterruptedException {
-        if(optionLabel.getText().equals("Option 1")) {
-            Node1 node1 = new Node1(1, 46, 379, icon1, packageArrivedLabel);
-            Node1 node2 = new Node1(2, 198, 204, icon2, packageArrivedLabel);
-            Node1 node3 = new Node1(3, 199, 529, icon3, packageArrivedLabel);
-            Node1 node4 = new Node1(4, 350, 379, icon4, packageArrivedLabel);
-            Node1 node5 = new Node1(5, 554, 529, icon5, packageArrivedLabel);
-            Node1 node6 = new Node1(6, 554, 204, icon6, packageArrivedLabel);
-            Node1 node7 = new Node1(7, 554, 379, icon7, packageArrivedLabel);
-            Node1 node8 = new Node1(8, 704, 474, icon8, packageArrivedLabel);
-            Node1 node9 = new Node1(9, 826, 379, icon9, packageArrivedLabel);
+        List<ImageView> icons = new ArrayList<>();
+        icons.add(icon1to2);
+        icons.add(icon1to3);
+        icons.add(icon2to1);
+        icons.add(icon2to4);
+        icons.add(icon2to6);
+        icons.add(icon3to1);
+        icons.add(icon3to4);
+        icons.add(icon3to5);
+        icons.add(icon4to2);
+        icons.add(icon4to3);
+        icons.add(icon4to5);
+        icons.add(icon4to7);
+        icons.add(icon5to3);
+        icons.add(icon5to4);
+        icons.add(icon5to8);
+        icons.add(icon6to2);
+        icons.add(icon6to7);
+        icons.add(icon6to9);
+        icons.add(icon7to4);
+        icons.add(icon7to6);
+        icons.add(icon7to8);
+        icons.add(icon8to5);
+        icons.add(icon8to7);
+        icons.add(icon8to9);
+        icons.add(icon9to6);
+        icons.add(icon9to8);
 
-            node1.addNeighbor(node2);
-            node1.addNeighbor(node3);
-    
-            node2.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node6);
-    
-            node3.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node5);
-    
-            node4.addNeighbor(node2);
-            node4.addNeighbor(node3);
-            node4.addNeighbor(node7);
-            node4.addNeighbor(node5);
-    
-            node5.addNeighbor(node3);
-            node5.addNeighbor(node4);
-            node5.addNeighbor(node8);
-    
-            node6.addNeighbor(node2);
-            node6.addNeighbor(node7);
-            node6.addNeighbor(node9);
-    
-            node7.addNeighbor(node4);
-            node7.addNeighbor(node6);
-            node7.addNeighbor(node8);
-    
-            node8.addNeighbor(node5);
-            node8.addNeighbor(node7);
-            node8.addNeighbor(node9);
-    
-            Package firstPackage = new Package(1, 9);
-            // node1.sendPackage(firstPackage);
-        } else if(optionLabel.getText().equals("Option 2")) {
-            Node2 node1 = new Node2(1, 46, 379, icon1, packageArrivedLabel, packagesCounterLabel);
-            Node2 node2 = new Node2(2, 198, 204, icon2, packageArrivedLabel, packagesCounterLabel);
-            Node2 node3 = new Node2(3, 199, 529, icon3, packageArrivedLabel, packagesCounterLabel);
-            Node2 node4 = new Node2(4, 350, 379, icon4, packageArrivedLabel, packagesCounterLabel);
-            Node2 node5 = new Node2(5, 554, 529, icon5, packageArrivedLabel, packagesCounterLabel);
-            Node2 node6 = new Node2(6, 554, 204, icon6, packageArrivedLabel, packagesCounterLabel);
-            Node2 node7 = new Node2(7, 554, 379, icon7, packageArrivedLabel, packagesCounterLabel);
-            Node2 node8 = new Node2(8, 704, 474, icon8, packageArrivedLabel, packagesCounterLabel);
-            Node2 node9 = new Node2(9, 826, 379, icon9, packageArrivedLabel, packagesCounterLabel);
+        int optionLabelValue = 0;
 
-            node1.addNeighbor(node2);
-            node1.addNeighbor(node3);
-    
-            node2.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node6);
-    
-            node3.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node5);
-    
-            node4.addNeighbor(node2);
-            node4.addNeighbor(node3);
-            node4.addNeighbor(node7);
-            node4.addNeighbor(node5);
-    
-            node5.addNeighbor(node3);
-            node5.addNeighbor(node4);
-            node5.addNeighbor(node8);
-    
-            node6.addNeighbor(node2);
-            node6.addNeighbor(node7);
-            node6.addNeighbor(node9);
-    
-            node7.addNeighbor(node4);
-            node7.addNeighbor(node6);
-            node7.addNeighbor(node8);
-    
-            node8.addNeighbor(node5);
-            node8.addNeighbor(node7);
-            node8.addNeighbor(node9);
-    
-            Package firstPackage = new Package(1, 9);
-            node1.setPackage(firstPackage);
+        if(optionLabel.getText().equals("Option 1")) optionLabelValue = 1;
+        if(optionLabel.getText().equals("Option 2")) optionLabelValue = 2;
+        if(optionLabel.getText().equals("Option 3")) optionLabelValue = 3;
+        if(optionLabel.getText().equals("Option 4")) optionLabelValue = 4;
 
-            node1.start();
-            node2.start();
-            node3.start();
-            node4.start();
-            node5.start();
-            node6.start();
-            node7.start();
-            node8.start();
-            node9.start();
-        } else if(optionLabel.getText().equals("Option 3")) {
-            Node3 node1 = new Node3(1, 46, 379, icon1, packageArrivedLabel);
-            Node3 node2 = new Node3(2, 198, 204, icon2, packageArrivedLabel);
-            Node3 node3 = new Node3(3, 199, 529, icon3, packageArrivedLabel);
-            Node3 node4 = new Node3(4, 350, 379, icon4, packageArrivedLabel);
-            Node3 node5 = new Node3(5, 554, 529, icon5, packageArrivedLabel);
-            Node3 node6 = new Node3(6, 554, 204, icon6, packageArrivedLabel);
-            Node3 node7 = new Node3(7, 554, 379, icon7, packageArrivedLabel);
-            Node3 node8 = new Node3(8, 704, 474, icon8, packageArrivedLabel);
-            Node3 node9 = new Node3(9, 826, 379, icon9, packageArrivedLabel);
+        Node node1 = new Node(1, 46, 379, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node2 = new Node(2, 198, 204, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node3 = new Node(3, 198, 529, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node4 = new Node(4, 350, 379, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node5 = new Node(5, 554, 529, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node6 = new Node(6, 554, 204, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node7 = new Node(7, 554, 379, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node8 = new Node(8, 704, 474, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
+        Node node9 = new Node(9, 826, 379, icons, packageArrivedLabel, packagesCounterLabel, optionLabelValue);
 
-            node1.addNeighbor(node2);
-            node1.addNeighbor(node3);
-    
-            node2.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node6);
-    
-            node3.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node5);
-    
-            node4.addNeighbor(node2);
-            node4.addNeighbor(node3);
-            node4.addNeighbor(node7);
-            node4.addNeighbor(node5);
-    
-            node5.addNeighbor(node3);
-            node5.addNeighbor(node4);
-            node5.addNeighbor(node8);
-    
-            node6.addNeighbor(node2);
-            node6.addNeighbor(node7);
-            node6.addNeighbor(node9);
-    
-            node7.addNeighbor(node4);
-            node7.addNeighbor(node6);
-            node7.addNeighbor(node8);
-    
-            node8.addNeighbor(node5);
-            node8.addNeighbor(node7);
-            node8.addNeighbor(node9);
-    
-            Package firstPackage = new Package(1, 9);
-            node1.sendPackage(firstPackage);
-        } else {
-            Node4 node1 = new Node4(1, 46, 379, icon1, packageArrivedLabel);
-            Node4 node2 = new Node4(2, 198, 204, icon2, packageArrivedLabel);
-            Node4 node3 = new Node4(3, 199, 529, icon3, packageArrivedLabel);
-            Node4 node4 = new Node4(4, 350, 379, icon4, packageArrivedLabel);
-            Node4 node5 = new Node4(5, 554, 529, icon5, packageArrivedLabel);
-            Node4 node6 = new Node4(6, 554, 204, icon6, packageArrivedLabel);
-            Node4 node7 = new Node4(7, 554, 379, icon7, packageArrivedLabel);
-            Node4 node8 = new Node4(8, 704, 474, icon8, packageArrivedLabel);
-            Node4 node9 = new Node4(9, 826, 379, icon9, packageArrivedLabel);
+        node1.addNeighbor(node2);
+        node1.addNeighbor(node3);
 
-            node1.addNeighbor(node2);
-            node1.addNeighbor(node3);
-    
-            node2.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node6);
-    
-            node3.addNeighbor(node1);
-            node2.addNeighbor(node4);
-            node2.addNeighbor(node5);
-    
-            node4.addNeighbor(node2);
-            node4.addNeighbor(node3);
-            node4.addNeighbor(node7);
-            node4.addNeighbor(node5);
-    
-            node5.addNeighbor(node3);
-            node5.addNeighbor(node4);
-            node5.addNeighbor(node8);
-    
-            node6.addNeighbor(node2);
-            node6.addNeighbor(node7);
-            node6.addNeighbor(node9);
-    
-            node7.addNeighbor(node4);
-            node7.addNeighbor(node6);
-            node7.addNeighbor(node8);
-    
-            node8.addNeighbor(node5);
-            node8.addNeighbor(node7);
-            node8.addNeighbor(node9);
-    
-            Package firstPackage = new Package(1, 9);
-            // node1.sendPackage(firstPackage);
-        }
+        node2.addNeighbor(node1);
+        node2.addNeighbor(node4);
+        node2.addNeighbor(node6);
+
+        node3.addNeighbor(node1);
+        node3.addNeighbor(node4);
+        node3.addNeighbor(node5);
+
+        node4.addNeighbor(node2);
+        node4.addNeighbor(node3);
+        node4.addNeighbor(node5);
+        node4.addNeighbor(node7);
+
+        node5.addNeighbor(node3);
+        node5.addNeighbor(node4);
+        node5.addNeighbor(node8);
+
+        node6.addNeighbor(node2);
+        node6.addNeighbor(node7);
+        node6.addNeighbor(node9);
+
+        node7.addNeighbor(node4);
+        node7.addNeighbor(node6);
+        node7.addNeighbor(node8);
+
+        node8.addNeighbor(node5);
+        node8.addNeighbor(node7);
+        node8.addNeighbor(node9);
+
+        node9.addNeighbor(node6);
+        node9.addNeighbor(node8);
+
+        Package firstPackage = new Package(1, 9);
+        node1.addPackage(firstPackage);
+
+        node1.start();
+        node2.start();
+        node3.start();
+        node4.start();
+        node5.start();
+        node6.start();
+        node7.start();
+        node8.start();
+        node9.start();
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        icon1.setImage(Gallery.icon);
-        icon2.setImage(Gallery.icon);
-        icon3.setImage(Gallery.icon);
-        icon4.setImage(Gallery.icon);
-        icon5.setImage(Gallery.icon);
-        icon6.setImage(Gallery.icon);
-        icon7.setImage(Gallery.icon);
-        icon8.setImage(Gallery.icon);
-        icon9.setImage(Gallery.icon);
+        icon1to2.setImage(Gallery.icon);
+        icon1to3.setImage(Gallery.icon);
+        icon2to1.setImage(Gallery.icon);
+        icon2to4.setImage(Gallery.icon);
+        icon2to6.setImage(Gallery.icon);
+        icon3to1.setImage(Gallery.icon);
+        icon3to4.setImage(Gallery.icon);
+        icon3to5.setImage(Gallery.icon);
+        icon4to2.setImage(Gallery.icon);
+        icon4to3.setImage(Gallery.icon);
+        icon4to5.setImage(Gallery.icon);
+        icon4to7.setImage(Gallery.icon);
+        icon5to3.setImage(Gallery.icon);
+        icon5to4.setImage(Gallery.icon);
+        icon5to8.setImage(Gallery.icon);
+        icon6to2.setImage(Gallery.icon);
+        icon6to7.setImage(Gallery.icon);
+        icon6to9.setImage(Gallery.icon);
+        icon7to4.setImage(Gallery.icon);
+        icon7to6.setImage(Gallery.icon);
+        icon7to8.setImage(Gallery.icon);
+        icon8to5.setImage(Gallery.icon);
+        icon8to7.setImage(Gallery.icon);
+        icon8to9.setImage(Gallery.icon);
+        icon9to6.setImage(Gallery.icon);
+        icon9to8.setImage(Gallery.icon);
 
-        icon1.setVisible(false);
-        icon2.setVisible(false);
-        icon3.setVisible(false);
-        icon4.setVisible(false);
-        icon5.setVisible(false);
-        icon6.setVisible(false);
-        icon7.setVisible(false);
-        icon8.setVisible(false);
-        icon9.setVisible(false);
+        icon1to2.setVisible(false);
+        icon1to3.setVisible(false);
+        icon2to1.setVisible(false);
+        icon2to4.setVisible(false);
+        icon2to6.setVisible(false);
+        icon3to1.setVisible(false);
+        icon3to4.setVisible(false);
+        icon3to5.setVisible(false);
+        icon4to2.setVisible(false);
+        icon4to3.setVisible(false);
+        icon4to5.setVisible(false);
+        icon4to7.setVisible(false);
+        icon5to3.setVisible(false);
+        icon5to4.setVisible(false);
+        icon5to8.setVisible(false);
+        icon6to2.setVisible(false);
+        icon6to7.setVisible(false);
+        icon6to9.setVisible(false);
+        icon7to4.setVisible(false);
+        icon7to6.setVisible(false);
+        icon7to8.setVisible(false);
+        icon8to5.setVisible(false);
+        icon8to7.setVisible(false);
+        icon8to9.setVisible(false);
+        icon9to6.setVisible(false);
+        icon9to8.setVisible(false);
     }
 }

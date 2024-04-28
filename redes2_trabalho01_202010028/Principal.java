@@ -23,11 +23,11 @@ public class Principal extends Application {
         AlgorithmController controller1 = new AlgorithmController();
         stage = currentStage;
 
-        Parent menuParent = FXMLLoader.load(getClass().getResource("Pages/MenuPage.fxml"));
-        Parent option1Parent = FXMLLoader.load(getClass().getResource("Pages/Option1Page.fxml"));
-        Parent option2Parent = FXMLLoader.load(getClass().getResource("Pages/Option2Page.fxml"));
-        Parent option3Parent = FXMLLoader.load(getClass().getResource("Pages/Option3Page.fxml"));
-        Parent option4Parent = FXMLLoader.load(getClass().getResource("Pages/Option4Page.fxml"));
+        Parent menuParent = FXMLLoader.load(getClass().getResource("view/MenuPage.fxml"));
+        Parent option1Parent = FXMLLoader.load(getClass().getResource("view/Option1Page.fxml"));
+        Parent option2Parent = FXMLLoader.load(getClass().getResource("view/Option2Page.fxml"));
+        Parent option3Parent = FXMLLoader.load(getClass().getResource("view/Option3Page.fxml"));
+        Parent option4Parent = FXMLLoader.load(getClass().getResource("view/Option4Page.fxml"));
 
         menuScene = new Scene(menuParent);
         option1Scene = new Scene(option1Parent);

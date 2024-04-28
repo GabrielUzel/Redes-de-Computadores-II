@@ -1,5 +1,3 @@
-package Models;
-
 import javafx.scene.image.ImageView;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -22,9 +20,7 @@ public class Package extends Thread {
 
     @Override
     public void run() {
-        Platform.runLater(() -> {
-            iconAnimation();
-        });
+        iconAnimation();
         packageCounter++;
         System.out.println("Pacotes enviados: " + packageCounter);
     }
@@ -33,23 +29,27 @@ public class Package extends Thread {
         icon.setFitWidth(19);
         icon.setFitHeight(29);
         icon.setVisible(true);
-        icon.setLayoutX(senderCoordinates[0]);
-        icon.setLayoutY(senderCoordinates[1]);
-        icon.setX(0);
-        icon.setY(0);
+
+        Platform.runLater(() -> {
+            icon.setLayoutX(senderCoordinates[0]);
+            icon.setLayoutY(senderCoordinates[1]);
+        });
+
 
         TranslateTransition animation = new TranslateTransition(Duration.millis(2000));
         animation.setNode(icon);
-
+        animation.setCycleCount(1);
         animation.setByX(neighborCoordinates[0] - senderCoordinates[0]);
         animation.setByY(neighborCoordinates[1] - senderCoordinates[1]);
 
         animation.setOnFinished(event -> {
             icon.setVisible(false);
-            icon.setLayoutX(senderCoordinates[0]);
-            icon.setLayoutY(senderCoordinates[1]);
+            Platform.runLater(() -> {
+                icon.setTranslateX(0);
+                icon.setTranslateY(0);
+            });
         });
-        
+
         animation.play();
     }
     
@@ -71,5 +71,13 @@ public class Package extends Thread {
     
     public void setIcon(ImageView icon) {
         this.icon = icon;
+    }
+
+    public static void reduceTTL() {
+        ttl--;
+    }
+
+    public static void setArrivedTrue() {
+        arrived = true;
     }
 }
