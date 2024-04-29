@@ -2,7 +2,9 @@
   <h1 align="center">Programação concorrente com Java</h1>
 </div>
 
+<div align="justify">
 Nessa repositório estão simulações de alguns algoritmos de roteamento usando representações visuais feitas em Javafx. Aqui estão os algoritmos de inundação, caminho mais curto, 
+</div>
 
 ## Algoritmo de inundação
 <div align="justify">
