@@ -17,3 +17,13 @@ Nesse algoritmo, todos os roteadores, ao receberem pacotes, devem enviá-lo a to
   
 </div>
 <img></img>
+
+## Ferramentas
+- Linguagem: Java
+- Interface: Javafx
+- Style: SceneBuilder
+
+## Para testar os projetos
+<div align="justify">
+Será necessária a instalação do Java e do Javafx. Além disso será necessário também o caminho absoluto para a pasta "lib" do Javafx com o intuito de importar as classes que serão utilizadas na interface gráfica. OS detalhes serão descritos no README de cada projeto.
+</div>
