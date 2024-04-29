@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center">Programação concorrente com Java</h1>
+  <h1 align="center">Redes de computadores II com Java</h1>
 </div>
 
 <div align="justify">
