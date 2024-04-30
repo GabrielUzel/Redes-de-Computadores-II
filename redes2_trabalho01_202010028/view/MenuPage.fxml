@@ -40,9 +40,6 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <fx:define>
-         <Image fx:id="btnImage" url="@img/Exclamationmark.png" />
-      </fx:define>
       <Button fx:id="showMessageButton" layoutX="837.0" layoutY="21.0" mnemonicParsing="false" onAction="#showMessage" style="-fx-background-color: none; -fx-cursor: hand;" />
    </children>
    <padding>

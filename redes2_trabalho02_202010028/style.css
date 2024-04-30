@@ -1,0 +1,15 @@
+.slider .track {
+    -fx-background-color: #6272A4;
+    -fx-pref-height: 12px;
+    -fx-background-radius: 0;
+}
+
+.slider .thumb {
+    -fx-background-color: #44475A;
+    -fx-pref-height: 23px;
+    -fx-pref-width: 8px;
+}
+
+.slider .axis {
+    -fx-tick-label-fill: #FFFFFF;
+}
