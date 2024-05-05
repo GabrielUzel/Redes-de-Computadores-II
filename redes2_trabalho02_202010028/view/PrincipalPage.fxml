@@ -36,16 +36,6 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label fx:id="senderLabel" layoutX="438.0" layoutY="588.0" text="1" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label fx:id="receiverLabel" layoutX="438.0" layoutY="643.0" text="1" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

@@ -1,16 +1,13 @@
 /* ***************************************************************
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
-* Inicio...........: 20/04/2024
-* Ultima alteracao.: 29/04/2024
+* Inicio...........: 02/05/2024
+* Ultima alteracao.: //
 * Nome.............: Node
 * Funcao...........: Define the router algorithm
 *************************************************************** */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 
 public class Node extends Thread {
     private int id; // Router id
