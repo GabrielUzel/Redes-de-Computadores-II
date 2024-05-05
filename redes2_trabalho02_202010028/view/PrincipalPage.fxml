@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <Label layoutX="184.0" layoutY="40.0" prefHeight="43.0" prefWidth="532.0" text="Algoritmo por caminho mais curto by Gabriel Uzel" textFill="WHITE">
+      <Label layoutX="149.0" layoutY="39.0" prefHeight="43.0" prefWidth="605.0" text="Algoritmo por caminho mais curto by Gabriel Uzel" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -36,6 +36,11 @@
          <font>
             <Font size="20.0" />
          </font></Label>
+      <Label fx:id="warningLabel" layoutX="159.0" layoutY="555.0" text="Remetente e destinatario precisam ser diferentes" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
