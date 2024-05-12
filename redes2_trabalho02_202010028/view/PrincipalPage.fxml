@@ -41,6 +41,71 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <ImageView fx:id="edge1and2" fitHeight="123.0" fitWidth="112.0" layoutX="79.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge1and2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge1and3" fitHeight="100.0" fitWidth="108.0" layoutX="81.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge1and3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge2and4" fitHeight="136.0" fitWidth="104.0" layoutX="231.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge2and4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge2and6" fitHeight="160.0" fitWidth="286.0" layoutX="246.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge2and6.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge3and4" fitHeight="100.0" fitWidth="100.0" layoutX="234.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge3and4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge3and5" fitHeight="150.0" fitWidth="287.0" layoutX="245.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge3and5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge4and5" fitHeight="112.0" fitWidth="152.0" layoutX="390.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge4and5.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge4and7" fitHeight="150.0" fitWidth="134.0" layoutX="399.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge4and7.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge5and8" fitHeight="32.0" fitWidth="82.0" layoutX="607.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge5and8.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge6and7" fitHeight="106.0" fitWidth="200.0" layoutX="570.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge6and7.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge6and9" fitHeight="140.0" fitWidth="214.0" layoutX="603.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge6and9.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge7and8" fitHeight="57.0" fitWidth="89.0" layoutX="603.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge7and8.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="edge8and9" fitHeight="50.0" fitWidth="67.0" layoutX="754.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/Edge8and9.png" />
+         </image>
+      </ImageView>
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
