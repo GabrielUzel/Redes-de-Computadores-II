@@ -14,7 +14,7 @@ Nesse algoritmo, todos os roteadores, ao receberem pacotes, devem enviá-lo a to
 
 ## Algoritmo do caminho mais curto
 <div align="justify">
-  
+Aqui está implementado o algoritmo de melhor caminho de Dijasktra. Dado um roteador remetente e um roteador destinatário dentro de um grafo com arestas que possuem peso, o algoritmo encontra o caminho de menor peso entre esses dois roteadores.
 </div>
 <img></img>
 
