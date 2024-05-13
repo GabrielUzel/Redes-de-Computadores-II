@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Principal",
+            "request": "launch",
+            "mainClass": "Principal",
+            "projectName": "redes2_trabalho01_202010028_f80d679b"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AlgorithmController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AlgorithmController">
    <children>
-      <Label fx:id="optionLabel" layoutX="406.0" layoutY="49.0" prefHeight="43.0" prefWidth="97.0" text="Option 1" textFill="WHITE">
+      <Label fx:id="optionLabel" layoutX="406.0" layoutY="49.0" prefHeight="43.0" prefWidth="108.0" text="Option 1" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -19,7 +19,7 @@
             <Image url="@../img/Grafo.png" />
          </image>
       </ImageView>
-      <Button fx:id="backToMenu" layoutX="8.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToMenu" prefHeight="40.0" prefWidth="85.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Voltar" textFill="WHITE">
+      <Button fx:id="backToMenu" layoutX="8.0" layoutY="7.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#backToMenu" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Voltar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
