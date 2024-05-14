@@ -3,7 +3,7 @@
 * Matricula........: 202010028
 * Inicio...........: 02/05/2024
 * Ultima alteracao.: 12/05/2024
-* Nome.............: AlgorithmController
+* Nome.............: MainController
 * Funcao...........: Start the algorithm
 *************************************************************** */
 import java.net.URL;
@@ -193,4 +193,4 @@ public class MainController implements Initializable {
         edge7and8.setVisible(false);
         edge8and9.setVisible(false);
     } // End setAllImagesInvisible
-} // End class AlgorithmController 
+} // End class MainController 

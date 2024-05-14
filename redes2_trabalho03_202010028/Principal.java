@@ -1,8 +1,8 @@
 /* ***************************************************************
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
-* Inicio...........: 02/05/2024
-* Ultima alteracao.: 12/05/2024
+* Inicio...........: 14/05/2024
+* Ultima alteracao.: //
 * Nome.............: Principal
 * Funcao...........: Start the interface
 *************************************************************** */
@@ -21,7 +21,7 @@ public class Principal extends Application {
     * Retorno: void
     *************************************************************** */
     public static void main (String [] args) {
-        launch (args);
+        launch(args);
     } // End main
 
     /* ***************************************************************
@@ -40,7 +40,7 @@ public class Principal extends Application {
         Scene mainScene = new Scene(mainParent);
 
         // Show UI
-        stage.setTitle("Algoritmo caminho mais curto");
+        stage.setTitle("Algoritmo por vetor de distância");
         stage.setScene(mainScene);
         stage.show();
     } // End start

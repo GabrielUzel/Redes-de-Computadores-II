@@ -1,8 +1,8 @@
 /* ***************************************************************
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
-* Inicio...........: 02/05/2024
-* Ultima alteracao.: 12/05/2024
+* Inicio...........: 14/05/2024
+* Ultima alteracao.: //
 * Nome.............: WrongInputException
 * Funcao...........: Show error if user selects same node to be sender and receiver
 *************************************************************** */
