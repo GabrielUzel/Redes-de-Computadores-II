@@ -25,5 +25,11 @@ Aqui está implementado o algoritmo de melhor caminho de Dijasktra. Dado um rote
 
 ## Para testar os projetos
 <div align="justify">
-Será necessária a instalação do Java e do Javafx. Além disso será necessário também o caminho absoluto para a pasta "lib" do Javafx com o intuito de importar as classes que serão utilizadas na interface gráfica. OS detalhes serão descritos no README de cada projeto.
+Será necessária a instalação do Java e do Javafx. Procure o caminho da pasta "lib" do javafx e o copie. 
+
+### Rode o programa
+```shell
+javac --module-path \"YourPath/lib\" --add-modules javafx.controls,javafx.fxml Principal.java
+java --module-path \"YourPath/lib\" --add-modules javafx.controls,javafx.fxml Principal
+```
 </div>
