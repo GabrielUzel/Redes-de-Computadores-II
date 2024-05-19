@@ -29,7 +29,7 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Label fx:id="packageArrivedLabel" layoutX="739.0" layoutY="303.0" text="Ainda não chegou ao destino" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="packageArrivedLabel" layoutX="694.0" layoutY="277.0" prefHeight="16.0" prefWidth="192.0" text="Ainda não chegou ao destino" textAlignment="CENTER" textFill="WHITE" />
       <Label fx:id="packagesCounterLabel" layoutX="136.0" layoutY="646.0" text="Pacotes enviados: 0" textFill="WHITE">
          <font>
             <Font size="20.0" />
