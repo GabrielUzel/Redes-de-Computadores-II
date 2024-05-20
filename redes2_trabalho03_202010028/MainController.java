@@ -42,6 +42,16 @@ public class MainController implements Initializable {
     @FXML private CheckBox checkBox1_3;
     @FXML private CheckBox checkBox2_4;
     @FXML private CheckBox checkBox2_6;
+    @FXML private CheckBox checkBox3_4;
+    @FXML private CheckBox checkBox3_5;
+    @FXML private CheckBox checkBox4_5;
+    @FXML private CheckBox checkBox4_7;
+    @FXML private CheckBox checkBox5_8;
+    @FXML private CheckBox checkBox6_7;
+    @FXML private CheckBox checkBox6_9;
+    @FXML private CheckBox checkBox7_8;
+    @FXML private CheckBox checkBox8_9;
+
 
     private ArrayList<ImageView> edges = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>(); 
@@ -59,6 +69,8 @@ public class MainController implements Initializable {
 
         int senderId = (int) senderSlider.getValue();
         int receiverId = (int) receiverSlider.getValue();
+
+        ArrayList<Node> nodes = new ArrayList<>();
 
         // Declaration of the routers
         Node node1 = new Node(1);
@@ -106,6 +118,16 @@ public class MainController implements Initializable {
         node9.addNeighbor(node6, 3);
         node9.addNeighbor(node8, 1);
 
+        nodes.add(node1);
+        nodes.add(node2);
+        nodes.add(node3);
+        nodes.add(node4);
+        nodes.add(node5);
+        nodes.add(node6);
+        nodes.add(node7);
+        nodes.add(node8);
+        nodes.add(node9);
+
         fillEdgesArray();
 
         try {
@@ -118,6 +140,8 @@ public class MainController implements Initializable {
             for(ImageView edge : edgesToRemove) {
                 edges.remove(edge);
             }
+
+            if(edges.isEmpty()) throw new Exception();
         } catch(Exception e) {
             warningLabel.setText("Ao menos uma aresta deve existir");
             warningLabel.setVisible(true);
@@ -126,24 +150,27 @@ public class MainController implements Initializable {
             setAllImagesInvisible();
         }
 
+        ArrayList<Integer> nodesToMaintain = new ArrayList<>();
         for(ImageView edge : edges) {
+            String edgeNodes = edge.getId().replaceAll("[^0-9]", "");
+            String edgeNode1 = edgeNodes.substring(0, 1);
+            String edgeNode2 = edgeNodes.substring(1, 2);
+
+            if(!nodesToMaintain.contains(Integer.parseInt(edgeNode1))) nodesToMaintain.add(Integer.parseInt(edgeNode1));
+            if(!nodesToMaintain.contains(Integer.parseInt(edgeNode2))) nodesToMaintain.add(Integer.parseInt(edgeNode2));
             edge.setVisible(true);
         }
 
-        node1.addNeighborsDistance();
-        node2.addNeighborsDistance();
-        node3.addNeighborsDistance();
-        node4.addNeighborsDistance();
-        node5.addNeighborsDistance();
-        node6.addNeighborsDistance();
-        node7.addNeighborsDistance();
-        node8.addNeighborsDistance();
-        node9.addNeighborsDistance();
-
-        node2.updateDistanceTable(node1.getDistanceTable(), 1);
-        for(Structure index : node2.getDistanceTable()) {
-            System.out.println(index.getNodeId() + " " + index.getDistance() + " " + index.getNodeToSendPackage());
+        ArrayList<Node> nodesToRemove = new ArrayList<>();
+        for(Node node : nodes) {
+            if(!nodesToMaintain.contains(node.getId())) nodesToRemove.add(node);
         }
+        for(Node node : nodesToRemove) {
+            nodes.remove(node);
+        }
+
+        distanceVectorAlgorithm distanceVector = new distanceVectorAlgorithm(nodes);
+        distanceVector.algorithm();
 
         edges.clear();
     } // End startAlgorithm
@@ -162,6 +189,15 @@ public class MainController implements Initializable {
         checkBoxes.add(checkBox1_3);
         checkBoxes.add(checkBox2_4);
         checkBoxes.add(checkBox2_6);
+        checkBoxes.add(checkBox3_4);
+        checkBoxes.add(checkBox3_5);
+        checkBoxes.add(checkBox4_5);
+        checkBoxes.add(checkBox4_7);
+        checkBoxes.add(checkBox5_8);
+        checkBoxes.add(checkBox6_7);
+        checkBoxes.add(checkBox6_9);
+        checkBoxes.add(checkBox7_8);
+        checkBoxes.add(checkBox8_9);
     } // End initialize
 
     public void fillEdgesArray() {
