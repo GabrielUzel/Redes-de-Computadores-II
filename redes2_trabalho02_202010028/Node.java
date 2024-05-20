@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class Node {
     private int id; // Router id
     private int predecessor = 0;
-    HashMap<Node, Integer> neighbors = new HashMap<>(); // Neighbors of the current router
+    private HashMap<Node, Integer> neighbors = new HashMap<>(); // Neighbors of the current router
     private Integer distance = Integer.MAX_VALUE; // Initial infinite distance for destination
  
     // Constructor

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
@@ -9,19 +10,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #282A36;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
-      <Label layoutX="149.0" layoutY="39.0" prefHeight="43.0" prefWidth="605.0" text="Algoritmo por caminho mais curto by Gabriel Uzel" textFill="WHITE">
+      <Label layoutX="289.0" layoutY="29.0" prefHeight="43.0" prefWidth="605.0" text="Algoritmo por vetor de distancia by Gabriel Uzel" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="432.0" fitWidth="872.0" layoutX="15.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="432.0" fitWidth="872.0" layoutX="113.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Grafo.png" />
          </image>
       </ImageView>
-      <Button fx:id="startButton" layoutX="718.0" layoutY="604.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startAlgorithm" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Iniciar" textFill="WHITE">
+      <Button fx:id="startButton" layoutX="535.0" layoutY="604.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startAlgorithm" prefHeight="48.0" prefWidth="134.0" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Iniciar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
@@ -41,71 +42,96 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="edge1and2" fitHeight="123.0" fitWidth="112.0" layoutX="79.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge1and2" fitHeight="123.0" fitWidth="112.0" layoutX="177.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge1and2.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge1and3" fitHeight="100.0" fitWidth="108.0" layoutX="81.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge1and3" fitHeight="100.0" fitWidth="108.0" layoutX="179.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge1and3.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge2and4" fitHeight="136.0" fitWidth="104.0" layoutX="231.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge2and4" fitHeight="136.0" fitWidth="104.0" layoutX="329.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge2and4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge2and6" fitHeight="160.0" fitWidth="286.0" layoutX="246.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge2and6" fitHeight="160.0" fitWidth="286.0" layoutX="344.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge2and6.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge3and4" fitHeight="100.0" fitWidth="100.0" layoutX="234.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge3and4" fitHeight="100.0" fitWidth="100.0" layoutX="332.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge3and4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge3and5" fitHeight="150.0" fitWidth="287.0" layoutX="245.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge3and5" fitHeight="150.0" fitWidth="287.0" layoutX="343.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge3and5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge4and5" fitHeight="112.0" fitWidth="152.0" layoutX="390.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge4and5" fitHeight="112.0" fitWidth="152.0" layoutX="488.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge4and5.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge4and7" fitHeight="150.0" fitWidth="134.0" layoutX="399.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge4and7" fitHeight="150.0" fitWidth="134.0" layoutX="497.0" layoutY="325.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge4and7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge5and8" fitHeight="32.0" fitWidth="82.0" layoutX="607.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge5and8" fitHeight="32.0" fitWidth="82.0" layoutX="705.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge5and8.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge6and7" fitHeight="106.0" fitWidth="200.0" layoutX="570.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge6and7" fitHeight="106.0" fitWidth="200.0" layoutX="668.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge6and7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge6and9" fitHeight="140.0" fitWidth="214.0" layoutX="603.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge6and9" fitHeight="140.0" fitWidth="214.0" layoutX="701.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge6and9.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge7and8" fitHeight="57.0" fitWidth="89.0" layoutX="603.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge7and8" fitHeight="57.0" fitWidth="89.0" layoutX="701.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge7and8.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge8and9" fitHeight="50.0" fitWidth="67.0" layoutX="754.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge8and9" fitHeight="50.0" fitWidth="67.0" layoutX="852.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge8and9.png" />
          </image>
       </ImageView>
+      <CheckBox fx:id="checkBox1_2" layoutX="765.0" layoutY="560.0" mnemonicParsing="false" selected="true" text="1-2" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="826.0" layoutY="521.0" text="Arestas ativas" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="checkBox1_3" layoutX="766.0" layoutY="587.0" mnemonicParsing="false" selected="true" text="1-3" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkBox2_4" layoutX="766.0" layoutY="613.0" mnemonicParsing="false" selected="true" text="2-4" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="checkBox2_6" layoutX="767.0" layoutY="640.0" mnemonicParsing="false" selected="true" text="2-6" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
    </children>
    <padding>
       <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

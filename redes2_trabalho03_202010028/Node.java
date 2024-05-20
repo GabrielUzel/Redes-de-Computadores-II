@@ -6,17 +6,33 @@
 * Nome.............: Node
 * Funcao...........: Define the router algorithm
 *************************************************************** */
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Node {
     private int id; // Router id
-    private int predecessor = 0;
-    HashMap<Node, Integer> neighbors = new HashMap<>(); // Neighbors of the current router
-    private Integer distance = Integer.MAX_VALUE; // Initial infinite distance for destination
+    private HashMap<Node, Integer> neighbors = new HashMap<>(); // Neighbors of the current router
+    private ArrayList<Structure> distanceTable = new ArrayList<>();
  
     // Constructor
     public Node(int id) {
         this.id = id;
+
+        distanceTable.add(new Structure(1, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(2, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(3, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(4, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(5, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(6, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(7, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(8, Integer.MAX_VALUE, -1));
+        distanceTable.add(new Structure(9, Integer.MAX_VALUE, -1));
+
+        for(Structure index : this.getDistanceTable()) {
+            if(index.getNodeId() == id) index.setDistance(0);
+        }
+        // distanceTable.set
     } // End constructor
 
     /* ***************************************************************
@@ -40,26 +56,6 @@ public class Node {
     } // End getId
 
     /* ***************************************************************
-    * Metodo: getDistance
-    * Funcao: Get current distance of the current node
-    * Parametros: void
-    * Retorno: Current distance to destination
-    *************************************************************** */
-    public int getDistance() {
-        return this.distance;
-    } // end getDistance
-
-    /* ***************************************************************
-    * Metodo: setDistance
-    * Funcao: Set a new distance for this node
-    * Parametros: newDistance= New distance value
-    * Retorno: void
-    *************************************************************** */
-    public void setDistance(Integer newDistance) {
-        this.distance = newDistance;
-    } // End setDistance
-
-    /* ***************************************************************
     * Metodo: getNeighbors
     * Funcao: Get current node neighbors
     * Parametros: void
@@ -70,22 +66,44 @@ public class Node {
     } // End getNeighbor
 
     /* ***************************************************************
-    * Metodo: setPredecessor
-    * Funcao: Set the predecessor of the node that will help find the path to source
-    * Parametros: newPredecesssor= id of predecessor node
-    * Retorno: void
-    *************************************************************** */
-    public void setPredecessor(int newPredecessor) {
-        this.predecessor = newPredecessor;
-    } // End setPredecessor
-
-    /* ***************************************************************
-    * Metodo: getPredecessor
-    * Funcao: Get the predecessor of the node that will help find the path to source
+    * Metodo: distanceTable
+    * Funcao: Get the distance table of the node that will help find the path to source
     * Parametros: void
     * Retorno: Predecessor id
     *************************************************************** */
-    public int getPredecessor() {
-        return this.predecessor;
+    public ArrayList<Structure> getDistanceTable() {
+        return this.distanceTable;
     } // End getPredecessor
+
+    public void addNeighborsDistance() {
+        for(Structure index : distanceTable) {
+            for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) {
+                if(index.getNodeId() == entry.getKey().getId()) {
+                    index.setDistance(entry.getValue());
+                    index.setNodeToSendpackage(entry.getKey().getId());
+                }
+            }
+        }
+    }
+
+    public void updateDistanceTable(ArrayList<Structure> tableReceived, int senderId) {
+        int indexAux = 0;
+
+        for(Structure index : tableReceived) {
+            if(distanceTable.get(indexAux).getDistance() > index.getDistance()) {
+                distanceTable.get(indexAux).setDistance(index.getDistance() + getNeighborDistanceById(senderId));
+                distanceTable.get(indexAux).setNodeToSendpackage(senderId);
+            }
+
+            indexAux++;
+        }
+    }
+
+    public int getNeighborDistanceById(int id) {
+        for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) {
+            if(entry.getKey().getId() == id) return entry.getValue();
+        }
+
+        return -1;
+    }
 } // End class Node
