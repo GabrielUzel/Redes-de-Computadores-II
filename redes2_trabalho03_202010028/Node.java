@@ -32,7 +32,6 @@ public class Node {
         for(Structure index : this.getDistanceTable()) {
             if(index.getNodeId() == id) index.setDistance(0);
         }
-        // distanceTable.set
     } // End constructor
 
     /* ***************************************************************
@@ -45,12 +44,14 @@ public class Node {
         neighbors.put(neighbor, weight);
     } // End addNeighbor
 
-    public void addNeighborsDistance() {
+    public void addNeighborsDistance(ArrayList<Node> nodes) {
         for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) {
-            for(Structure index : distanceTable) {
-                if(index.getNodeId() == entry.getKey().getId()) {
-                    index.setDistance(entry.getValue());
-                    index.setNodeToSendpackage(entry.getKey().getId());
+            if(nodeExistsInArray(entry.getKey().getId(), nodes)) {
+                for(Structure index : distanceTable) {
+                    if(index.getNodeId() == entry.getKey().getId()) {
+                        index.setDistance(entry.getValue());
+                        index.setNodeToSendpackage(entry.getKey().getId());
+                    }
                 }
             }
         }
@@ -75,6 +76,14 @@ public class Node {
         }
 
         return -1;
+    }
+
+    public boolean nodeExistsInArray(int id, ArrayList<Node> array) {
+        for(Node node : array) {
+            if(node.getId() == id) return true;
+        }
+
+        return false;
     }
 
     /* ***************************************************************

@@ -173,6 +173,11 @@ public class MainController implements Initializable {
         edges.clear();
     } // End startAlgorithm
 
+    @FXML
+    void sendpackage(ActionEvent event) throws InterruptedException {
+        
+    }
+
     /* ***************************************************************
     * Metodo: initialize
     * Funcao: Define methods that executes when the current window opens

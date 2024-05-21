@@ -6,17 +6,19 @@ public class distanceVectorAlgorithm {
 
     public distanceVectorAlgorithm(ArrayList<Node> nodes) {
         this.nodes = nodes;
-
-        for(Node node : nodes) {
-            node.addNeighborsDistance();
-        }
     }
 
     public void algorithm() {
+        for(Node node : nodes) {
+            node.addNeighborsDistance(nodes);
+        }
+
         while(!verifyAllTablesAreCompleted()) {
             for(Node node : nodes) {
                 for(Map.Entry<Node, Integer> entry : node.getNeighbors().entrySet()) {
-                    node.updateDistanceTable(entry.getKey().getDistanceTable(), entry.getKey().getId());
+                    if(nodeExistsInCurrentUpdate(entry.getKey().getId())) {
+                        node.updateDistanceTable(entry.getKey().getDistanceTable(), entry.getKey().getId());
+                    }
                 }
             }
         }
