@@ -57,7 +57,7 @@
             <Image url="@../img/Edge2and4.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="edge2and6" fitHeight="160.0" fitWidth="286.0" layoutX="344.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edge2and6" fitHeight="160.0" fitWidth="286.0" layoutX="344.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/Edge2and6.png" />
          </image>

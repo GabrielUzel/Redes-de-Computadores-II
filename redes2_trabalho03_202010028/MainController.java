@@ -8,7 +8,6 @@
 *************************************************************** */
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,10 +33,6 @@ public class MainController implements Initializable {
     @FXML private ImageView edge6and9;
     @FXML private ImageView edge7and8;
     @FXML private ImageView edge8and9;
-    @FXML private Slider receiverSlider;
-    @FXML private Slider senderSlider;
-    @FXML private Button startButton;
-    @FXML private Label warningLabel;
     @FXML private CheckBox checkBox1_2;
     @FXML private CheckBox checkBox1_3;
     @FXML private CheckBox checkBox2_4;
@@ -51,7 +46,10 @@ public class MainController implements Initializable {
     @FXML private CheckBox checkBox6_9;
     @FXML private CheckBox checkBox7_8;
     @FXML private CheckBox checkBox8_9;
-
+    @FXML private Slider receiverSlider;
+    @FXML private Slider senderSlider;
+    @FXML private Button startButton;
+    @FXML private Label warningLabel;
 
     private ArrayList<ImageView> edges = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>(); 
