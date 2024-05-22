@@ -19,15 +19,15 @@ public class Node {
     public Node(int id) {
         this.id = id;
 
-        distanceTable.add(new Structure(1, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(2, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(3, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(4, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(5, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(6, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(7, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(8, Integer.MAX_VALUE - 10, -1));
-        distanceTable.add(new Structure(9, Integer.MAX_VALUE - 10, -1));
+        distanceTable.add(new Structure(1, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(2, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(3, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(4, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(5, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(6, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(7, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(8, Integer.MAX_VALUE - 10, null));
+        distanceTable.add(new Structure(9, Integer.MAX_VALUE - 10, null));
 
         for(Structure index : this.getDistanceTable()) {
             if(index.getNodeId() == id) index.setDistance(0);
@@ -50,20 +50,20 @@ public class Node {
                 for(Structure index : distanceTable) {
                     if(index.getNodeId() == entry.getKey().getId()) {
                         index.setDistance(entry.getValue());
-                        index.setNodeToSendpackage(entry.getKey().getId());
+                        index.setNodeToSendpackage(entry.getKey());
                     }
                 }
             }
         }
     }
 
-    public void updateDistanceTable(ArrayList<Structure> tableReceived, int senderId) {
+    public void updateDistanceTable(ArrayList<Structure> tableReceived, Node sender) {
         int indexAux = 0;
 
         for(Structure index : tableReceived) {
-            if(distanceTable.get(indexAux).getDistance() > index.getDistance() + getNeighborDistanceById(senderId)) {
-                distanceTable.get(indexAux).setDistance(index.getDistance() + getNeighborDistanceById(senderId));
-                distanceTable.get(indexAux).setNodeToSendpackage(senderId);
+            if(distanceTable.get(indexAux).getDistance() > index.getDistance() + getNeighborDistanceById(sender.getId())) {
+                distanceTable.get(indexAux).setDistance(index.getDistance() + getNeighborDistanceById(sender.getId()));
+                distanceTable.get(indexAux).setNodeToSendpackage(sender);
             }
 
             indexAux++;
@@ -115,4 +115,17 @@ public class Node {
     public ArrayList<Structure> getDistanceTable() {
         return this.distanceTable;
     } // End getPredecessor
+
+    public void setDistanceTable(ArrayList<Structure> distanceTable) {
+        this.distanceTable = distanceTable;
+    }
+
+    public void correctDistanceTable() {
+        for(Structure index : this.getDistanceTable()) {
+            if(index.getNodeId() == this.id) {
+                index.setDistance(0);
+                index.setNodeToSendpackage(null);
+            }
+        }
+    }
 } // End class Node

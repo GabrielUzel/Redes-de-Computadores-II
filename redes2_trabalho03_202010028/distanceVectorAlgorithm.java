@@ -16,8 +16,8 @@ public class distanceVectorAlgorithm {
         while(!verifyAllTablesAreCompleted()) {
             for(Node node : nodes) {
                 for(Map.Entry<Node, Integer> entry : node.getNeighbors().entrySet()) {
-                    if(nodeExistsInCurrentUpdate(entry.getKey().getId())) {
-                        node.updateDistanceTable(entry.getKey().getDistanceTable(), entry.getKey().getId());
+                    if(nodes.contains(entry.getKey())) {
+                        node.updateDistanceTable(entry.getKey().getDistanceTable(), entry.getKey());
                     }
                 }
             }
@@ -29,7 +29,11 @@ public class distanceVectorAlgorithm {
     public void printAllDistanceTables() {
         for(Node node : nodes) {
             for(Structure index : node.getDistanceTable()) {
-                System.out.println(index.getNodeId() + " " + index.getDistance() + " " + index.getNodeToSendPackage());
+                if(index.getNodeToSendPackage() == null) {
+                    System.out.println(index.getNodeId() + " " + index.getDistance() + " null");
+                } else {
+                    System.out.println(index.getNodeId() + " " + index.getDistance() + " " + index.getNodeToSendPackage().getId());
+                }
             }
 
             System.out.println("\n");
