@@ -2,7 +2,7 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: //
+* Ultima alteracao.: 22/05/2024
 * Nome.............: MainController
 * Funcao...........: Start the algorithm
 *************************************************************** */
@@ -58,9 +58,9 @@ public class MainController implements Initializable {
     @FXML private Button sendPackageButton;
     @FXML private Label warningLabel;
 
-    private ArrayList<ImageView> edges = new ArrayList<>();
-    private ArrayList<CheckBox> checkBoxes = new ArrayList<>(); 
-    private ArrayList<Node> nodes = new ArrayList<>();
+    private ArrayList<ImageView> edges = new ArrayList<>(); // Array with edges image views
+    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();  // Array with all checkboxes
+    private ArrayList<Node> nodes = new ArrayList<>(); // Array with nodes that will update their distance table
 
     // Declaration of the routers
     private Node node1 = new Node(1);
@@ -81,34 +81,36 @@ public class MainController implements Initializable {
     *************************************************************** */
     @FXML
     void startAlgorithm(ActionEvent event) throws InterruptedException, FileNotFoundException, IOException {
-        warningLabel.setVisible(false);
-        nodes.clear();
-        resetAllDistanceTables();
-        setAllImagesVisible();
+        warningLabel.setVisible(false); // Warning label invisible
+        nodes.clear(); // Clear the nodes array to fill it aboves
+        resetAllDistanceTables(); // Reset all nodes distance tables with some edge is added or removed
+        setAllImagesVisible(); // All edges is show
         String filePath = "backboneToUse.txt";
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false));
-        ArrayList<ImageView> edgesToSetInvisible = new ArrayList<>();
+        ArrayList<ImageView> edgesToSetInvisible = new ArrayList<>(); // Array list to store the edges image views that will be invisible
         for(CheckBox current : checkBoxes) {
-            if(current.isSelected()) {
-                String lineAux = current.getId().replaceAll("[^0-9]", "");
+            if(current.isSelected()) { // Check what checkboxes are selected
+                // Write in the file a line that representes an edge, there will be 3 values, 2 nodes id and a weight 
+                String lineAux = current.getId().replaceAll("[^0-9]", ""); // Get the checkbox name and remove letters
                 int currentNode1Id = Integer.parseInt(lineAux.substring(0, 1));
                 int currentNode2Id = Integer.parseInt(lineAux.substring(1, 2));
                 int currentWeight = Integer.parseInt(lineAux.substring(2, 3));
 
                 String content = currentNode1Id + "" + currentNode2Id + "" + currentWeight;
-                writer.write(content);
+                writer.write(content); // Write the line 
                 writer.newLine();
             } else {
                 edgesToSetInvisible.add(edges.get(checkBoxes.indexOf(current)));
-            }
-        }
+            } // End if-else
+        } // End for
         writer.close();
         
         // Read the updated file and add the corrects neighbors
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         while ((line = reader.readLine()) != null) {
+            // Each line has 3 values as said before, here we take the 3 values and add to the nodes their neighbors with the correct weight
             int currentNode1Id = Integer.parseInt(line.substring(0, 1));
             int currentNode2Id = Integer.parseInt(line.substring(1, 2));
             int currentWeight= Integer.parseInt(line.substring(2, 3));
@@ -119,36 +121,43 @@ public class MainController implements Initializable {
             currentNode1.addNeighbor(currentNode2, currentWeight);
             currentNode2.addNeighbor(currentNode1, currentWeight);
 
+            // Add the nodes in the nodes arraylist, that arraylist will be used in the distance vector algorithm
             if(!nodes.contains(currentNode1)) nodes.add(currentNode1);
             if(!nodes.contains(currentNode2)) nodes.add(currentNode2);
-        }
+        } // End while
         reader.close();
 
         // Update ui with correct edges
         try {
-            for(ImageView edge : edgesToSetInvisible) {
-                if(edgesToSetInvisible.contains(edge)) {
-                    edge.setVisible(false);
-                }
-            }
-    
-            if(edges.isEmpty()) throw new Exception();
+            // Verify if all the edges will be invisible
+            if(edgesToSetInvisible.size() == edges.size()) throw new Exception();
+
+            for(ImageView edge : edgesToSetInvisible) { // Iterate over the array of edges to set invisible
+                edge.setVisible(false); // Set the image view to invisible
+            } // End for    
         }  catch(Exception e) {
             warningLabel.setText("Ao menos uma aresta deve existir");
             warningLabel.setVisible(true);
-        }
+        } // End try catch
 
-        distanceVectorAlgorithm distanceVector = new distanceVectorAlgorithm(nodes);
+        // Update nodes distance tables
+        DistanceVectorAlgorithm distanceVector = new DistanceVectorAlgorithm(nodes);
         distanceVector.algorithm();
 
-        sendPackageButton.setDisable(false);
+        sendPackageButton.setDisable(false); // Enable the button that show the best path
     } // End startAlgorithm
 
+    /* ***************************************************************
+    * Metodo: showPath
+    * Funcao: Update ui to show best path
+    * Parametros: event= Click event
+    * Retorno: void
+    *************************************************************** */
     @FXML
     void showPath(ActionEvent event) throws InterruptedException {
-        warningLabel.setVisible(false);
-        int senderId = (int) senderSlider.getValue();
-        int receiverId = (int) receiverSlider.getValue();
+        warningLabel.setVisible(false); // Warning label invisible
+        int senderId = (int) senderSlider.getValue(); // Get sender id from slider
+        int receiverId = (int) receiverSlider.getValue(); // Get receiver id from slider
 
         ShowPath bestPath = new ShowPath(senderId, receiverId, nodes, edges);
         try {
@@ -199,6 +208,12 @@ public class MainController implements Initializable {
         edges.add(edge8and9);
     } // End initialize
 
+    /* ***************************************************************
+    * Metodo: setAllImagesVisible
+    * Funcao: Set all edges image views visible
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
     public void setAllImagesVisible() {
         edge1and2.setVisible(true);
         edge1and3.setVisible(true);
@@ -213,8 +228,14 @@ public class MainController implements Initializable {
         edge6and9.setVisible(true);
         edge7and8.setVisible(true);
         edge8and9.setVisible(true);
-    } // End setAllImagesInvisible
+    } // End setAllImagesVisible
 
+    /* ***************************************************************
+    * Metodo: getNodeById
+    * Funcao: Given a id number, return the correct node
+    * Parametros: id= Node id
+    * Retorno: A node
+    *************************************************************** */
     public Node getNodeById(int id) {
         switch(id) {
             case 1: return node1;
@@ -226,10 +247,17 @@ public class MainController implements Initializable {
             case 7: return node7;
             case 8: return node8;
             default: return node9;
-        }
-    }
+        } // End switch-case
+    } // End getNodeById
 
+    /* ***************************************************************
+    * Metodo: resetAllDistanceTables
+    * Funcao: Reset all nodes distance table to initial values
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
     public void resetAllDistanceTables() {
+        // Create a new array with the initial values
         ArrayList<Structure> arrayAux = new ArrayList<>();
 
         arrayAux.add(new Structure(1, Integer.MAX_VALUE - 10, null));
@@ -242,6 +270,9 @@ public class MainController implements Initializable {
         arrayAux.add(new Structure(8, Integer.MAX_VALUE - 10, null));
         arrayAux.add(new Structure(9, Integer.MAX_VALUE - 10, null));
 
+        /* New ArrayList for each node. These new arrays were created because arraylists are passed by
+        reference, so if node1 distance table is changed, node2 distance table is changed too. That 
+        behavior is undesirable */
         ArrayList<Structure> forNode1 = new ArrayList<>();
         ArrayList<Structure> forNode2 = new ArrayList<>();
         ArrayList<Structure> forNode3 = new ArrayList<>();
@@ -252,6 +283,7 @@ public class MainController implements Initializable {
         ArrayList<Structure> forNode8 = new ArrayList<>();
         ArrayList<Structure> forNode9 = new ArrayList<>();
 
+        // Copy the values
         for(Structure item : arrayAux) {
             forNode1.add(item.clone());
             forNode2.add(item.clone());
@@ -264,6 +296,7 @@ public class MainController implements Initializable {
             forNode9.add(item.clone());
         }
 
+        // Update each node distance table
         node1.setDistanceTable(forNode1);
         node2.setDistanceTable(forNode2);
         node3.setDistanceTable(forNode3);
@@ -274,6 +307,7 @@ public class MainController implements Initializable {
         node8.setDistanceTable(forNode8);
         node9.setDistanceTable(forNode9);
 
+        // For each node, the distance for itself is 0, this function corrects the node distance table
         node1.correctDistanceTable();
         node2.correctDistanceTable();
         node3.correctDistanceTable();
@@ -283,5 +317,5 @@ public class MainController implements Initializable {
         node7.correctDistanceTable();
         node8.correctDistanceTable();
         node9.correctDistanceTable();
-    }
+    } // End resetAllDistanceTables
 } // End class MainController 

@@ -1,14 +1,22 @@
+/* ***************************************************************
+* Autor............: Gabriel Uzel Fonseca
+* Matricula........: 202010028
+* Inicio...........: 14/05/2024
+* Ultima alteracao.: 22/05/2024
+* Nome.............: ShowPath
+* Funcao...........: Update ui with the best path
+*************************************************************** */
 import java.util.ArrayList;
-
 import javafx.scene.image.ImageView;
 
 public class ShowPath {
     private int senderId;
     private int receiverId;
     private ArrayList<Node> nodes;
-    private ArrayList<Integer> bestPath = new ArrayList<>();
-    private ArrayList<ImageView> edges;
+    private ArrayList<Integer> bestPath = new ArrayList<>(); // Store the best path with nodes id
+    private ArrayList<ImageView> edges; // ArrayList with the edges image view to update
 
+    // Constructor
     public ShowPath(int senderId, int receiverId, ArrayList<Node> nodes, ArrayList<ImageView> edges) {
         this.senderId = senderId;
         this.receiverId = receiverId;
@@ -16,9 +24,16 @@ public class ShowPath {
         this.edges = edges;
     }
 
+    /* ***************************************************************
+    * Metodo: algorithm
+    * Funcao: Execute the algorithm
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
     public void algorithm() throws WrongInputException {
         if(senderId == receiverId) throw new WrongInputException("Remetente e destinatário devem ser diferentes"); // Sender and receiver must be diferent
 
+        // Get the sender and receiver Nodes
         Node senderNode = null;
         Node receiverNode = null;
 
@@ -27,31 +42,35 @@ public class ShowPath {
             if(node.getId() == receiverId) receiverNode = node;
         }
 
+        // If the sender or the receiver is not a active node, throw exception
         if(senderNode == null || receiverNode == null) throw new WrongInputException("É impossível enviar esse pacote");
 
+        // Get the best path
         int currentNode = senderId;
-        while(currentNode != receiverId) {
+        while(currentNode != receiverId) { // Loop until find the receiver node
             bestPath.add(currentNode);
 
-            for(Structure index : senderNode.getDistanceTable()) {
+            for(Structure index : senderNode.getDistanceTable()) { // Loop in current node distance table to find the next node
                 if(receiverNode.getId() == index.getNodeId()) {
                     senderNode = index.getNodeToSendPackage();
                     currentNode = senderNode.getId();
-                }
-            }
-        }
+                } // End if
+            } // End for
+        } // End while
 
-        bestPath.add(receiverId);
+        bestPath.add(receiverId); // Add the receiver node id at the end
 
+        // Update the imageView of the best path
         int j = 1; // Second element of the two by two pair edge
-
         for(int i = 0; i < bestPath.size(); i++) {
             if(j == bestPath.size()) break; // When arrives the destination, exit for loop
 
-            getEdge(bestPath.get(i), bestPath.get(j)).setVisible(false); // Set the current edge image view visible
+            ImageView edge = getEdge(bestPath.get(i), bestPath.get(j));
+            edge.setImage(Gallery.getImage(edges.indexOf(edge))); // Update current image view source
+
             j++;
         } // End for
-    }
+    } // End algorithm
 
     /* ***************************************************************
     * Metodo: getEdge
@@ -75,4 +94,4 @@ public class ShowPath {
 
         return edges.get(12);
     } // End getEdge
-}
+} // End class ShowPath

@@ -2,9 +2,9 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: //2024
+* Ultima alteracao.: 22/05/2024
 * Nome.............: Node
-* Funcao...........: Define the router algorithm
+* Funcao...........: Define router functions
 *************************************************************** */
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,47 +44,90 @@ public class Node {
         neighbors.put(neighbor, weight);
     } // End addNeighbor
 
+    /* ***************************************************************
+    * Metodo: addNeighborsDistance
+    * Funcao: Update the distance table with neighbors distance
+    * Parametros: nodes= ArrayList of active nodes
+    * Retorno: void
+    *************************************************************** */
     public void addNeighborsDistance(ArrayList<Node> nodes) {
-        for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) {
-            if(nodeExistsInArray(entry.getKey().getId(), nodes)) {
-                for(Structure index : distanceTable) {
-                    if(index.getNodeId() == entry.getKey().getId()) {
-                        index.setDistance(entry.getValue());
+        for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) { // Iterate over all neighbors
+            if(nodeExistsInArray(entry.getKey().getId(), nodes)) { // Verify if the neighbor is a active node
+                for(Structure index : distanceTable) { // Iterate over the distance table
+                    if(index.getNodeId() == entry.getKey().getId()) { // Get the neighbor in the distance table
+                        // Update the distance table
+                        index.setDistance(entry.getValue()); 
                         index.setNodeToSendpackage(entry.getKey());
-                    }
-                }
-            }
-        }
-    }
+                    } // End if
+                } // End for
+            } // End if
+        } // End for
+    } // End addNeighborsDistance
 
+    /* ***************************************************************
+    * Metodo: updateDistanceTable
+    * Funcao: Update the distance table from a received table
+    * Parametros: tableReceived= A table sent by a neighbor, sender= The neighbor who sent the table
+    * Retorno: void
+    *************************************************************** */
     public void updateDistanceTable(ArrayList<Structure> tableReceived, Node sender) {
-        int indexAux = 0;
+        int indexAux = 0; // Assistant index
 
-        for(Structure index : tableReceived) {
+        for(Structure index : tableReceived) { // Iterate over the distance table 
+            // Verify if, in the distance table received there is a shorter path to each node
             if(distanceTable.get(indexAux).getDistance() > index.getDistance() + getNeighborDistanceById(sender.getId())) {
+                // Update the node distance table
                 distanceTable.get(indexAux).setDistance(index.getDistance() + getNeighborDistanceById(sender.getId()));
                 distanceTable.get(indexAux).setNodeToSendpackage(sender);
-            }
+            } // End if
 
             indexAux++;
-        }
-    }
+        } // End for
+    } // End updateDistanceTable
 
+    /* ***************************************************************
+    * Metodo: getNeighborDistanceById
+    * Funcao: Return a node distance in the graph given its id
+    * Parametros: id= The desiried node id
+    * Retorno: A distance
+    *************************************************************** */
     public int getNeighborDistanceById(int id) {
         for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) {
             if(entry.getKey().getId() == id) return entry.getValue();
-        }
+        } // End for 
 
         return -1;
-    }
+    } // End getNeighborDistanceByID
 
+    /* ***************************************************************
+    * Metodo: nodeExistsInArray
+    * Funcao: Given an id, search for a node with this id
+    * Parametros: id= The desiried node id, array= Nodes arrayList
+    * Retorno: A boolean
+    *************************************************************** */
     public boolean nodeExistsInArray(int id, ArrayList<Node> array) {
         for(Node node : array) {
             if(node.getId() == id) return true;
-        }
+        } // End for
 
         return false;
-    }
+    } // End nodeExistsInArray
+
+    /* ***************************************************************
+    * Metodo: correctDistanceTable
+    * Funcao: Update the distance table with the correct distance of this node index
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
+    public void correctDistanceTable() {
+        for(Structure index : this.getDistanceTable()) { // Loop through distance table to find this node index
+            if(index.getNodeId() == this.id) {
+                // Update the distance table to correct it
+                index.setDistance(0);
+                index.setNodeToSendpackage(null);
+            } // End if
+        } // End for
+    } // End correctDistanceTable
 
     /* ***************************************************************
     * Metodo: getId
@@ -116,16 +159,13 @@ public class Node {
         return this.distanceTable;
     } // End getPredecessor
 
+    /* ***************************************************************
+    * Metodo: distanceTable
+    * Funcao: Update the distance table
+    * Parametros: dsitanceTable= A new distance table
+    * Retorno: void
+    *************************************************************** */
     public void setDistanceTable(ArrayList<Structure> distanceTable) {
         this.distanceTable = distanceTable;
-    }
-
-    public void correctDistanceTable() {
-        for(Structure index : this.getDistanceTable()) {
-            if(index.getNodeId() == this.id) {
-                index.setDistance(0);
-                index.setNodeToSendpackage(null);
-            }
-        }
-    }
+    } // End setDistanceTable
 } // End class Node
