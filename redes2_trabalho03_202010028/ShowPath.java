@@ -2,7 +2,7 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: 22/05/2024
+* Ultima alteracao.: 23/05/2024
 * Nome.............: ShowPath
 * Funcao...........: Update ui with the best path
 *************************************************************** */
@@ -31,6 +31,7 @@ public class ShowPath {
     * Retorno: void
     *************************************************************** */
     public void algorithm() throws WrongInputException {
+        resetAllEdges();
         if(senderId == receiverId) throw new WrongInputException("Remetente e destinatário devem ser diferentes"); // Sender and receiver must be diferent
 
         // Get the sender and receiver Nodes
@@ -94,4 +95,16 @@ public class ShowPath {
 
         return edges.get(12);
     } // End getEdge
+
+    /* ***************************************************************
+    * Metodo: resetAllEdges
+    * Funcao: Set all edges image views to its initial image
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
+    public void resetAllEdges() {
+        for(ImageView edge : edges) {
+            edge.setImage(Gallery.getInitialImage(edges.indexOf(edge)));
+        } // End for
+    } // End resetAllEdges
 } // End class ShowPath

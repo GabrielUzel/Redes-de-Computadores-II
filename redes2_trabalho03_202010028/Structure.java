@@ -2,7 +2,7 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: 22/05/2024
+* Ultima alteracao.: 23/05/2024
 * Nome.............: Structure
 * Funcao...........: Define the distance table triad of info
 *************************************************************** */

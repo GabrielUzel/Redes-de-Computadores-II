@@ -2,12 +2,11 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: 22/05/2024
+* Ultima alteracao.: 23/05/2024
 * Nome.............: DistanceVectorAlgorithm
 * Funcao...........: Start the algorithm
 *************************************************************** */
 import java.util.ArrayList;
-import java.util.Map;
 
 public class DistanceVectorAlgorithm {
     private ArrayList<Node> nodes = new ArrayList<>(); // List of active nodes
@@ -26,17 +25,13 @@ public class DistanceVectorAlgorithm {
     public void algorithm() {
         // Update each node distance table with its neighbors distance
         for(Node node : nodes) {
-            node.addNeighborsDistance(nodes);
+            node.addNeighborsDistance();
         }
 
         // Update each node distance table with its neighbors distance table until all tables are completed
         while(!verifyAllTablesAreCompleted()) {
             for(Node node : nodes) {
-                for(Map.Entry<Node, Integer> entry : node.getNeighbors().entrySet()) { // Iterate over neighbors list
-                    if(nodes.contains(entry.getKey())) { // Verify if the neighbor is a active node
-                        node.updateDistanceTable(entry.getKey().getDistanceTable(), entry.getKey());
-                    } // End if
-                } // End for
+                node.updateDistanceTable();
             } // End for
         } // End while
     } // End algorithm 

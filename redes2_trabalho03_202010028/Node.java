@@ -2,7 +2,7 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: 22/05/2024
+* Ultima alteracao.: 23/05/2024
 * Nome.............: Node
 * Funcao...........: Define router functions
 *************************************************************** */
@@ -50,17 +50,15 @@ public class Node {
     * Parametros: nodes= ArrayList of active nodes
     * Retorno: void
     *************************************************************** */
-    public void addNeighborsDistance(ArrayList<Node> nodes) {
+    public void addNeighborsDistance() {
         for(Map.Entry<Node, Integer> entry : neighbors.entrySet()) { // Iterate over all neighbors
-            if(nodeExistsInArray(entry.getKey().getId(), nodes)) { // Verify if the neighbor is a active node
-                for(Structure index : distanceTable) { // Iterate over the distance table
-                    if(index.getNodeId() == entry.getKey().getId()) { // Get the neighbor in the distance table
-                        // Update the distance table
-                        index.setDistance(entry.getValue()); 
-                        index.setNodeToSendpackage(entry.getKey());
-                    } // End if
-                } // End for
-            } // End if
+            for(Structure index : distanceTable) { // Iterate over the distance table
+                if(index.getNodeId() == entry.getKey().getId()) { // Get the neighbor in the distance table
+                    // Update the distance table
+                    index.setDistance(entry.getValue()); 
+                    index.setNodeToSendpackage(entry.getKey());
+                } // End if
+            } // End for
         } // End for
     } // End addNeighborsDistance
 
@@ -70,18 +68,20 @@ public class Node {
     * Parametros: tableReceived= A table sent by a neighbor, sender= The neighbor who sent the table
     * Retorno: void
     *************************************************************** */
-    public void updateDistanceTable(ArrayList<Structure> tableReceived, Node sender) {
-        int indexAux = 0; // Assistant index
+    public void updateDistanceTable() {
+        for(Map.Entry<Node, Integer> entry : getNeighbors().entrySet()) { // Iterate over all neighbors
+            int indexAux = 0; // Auxiliar index
 
-        for(Structure index : tableReceived) { // Iterate over the distance table 
-            // Verify if, in the distance table received there is a shorter path to each node
-            if(distanceTable.get(indexAux).getDistance() > index.getDistance() + getNeighborDistanceById(sender.getId())) {
-                // Update the node distance table
-                distanceTable.get(indexAux).setDistance(index.getDistance() + getNeighborDistanceById(sender.getId()));
-                distanceTable.get(indexAux).setNodeToSendpackage(sender);
-            } // End if
+            for(Structure index : entry.getKey().getDistanceTable()) { // Iterate over neighbor distance table
+                // Verify if, in the distance table received, there is a shorter path to each node
+                if(index.getDistance() + entry.getValue() < distanceTable.get(indexAux).getDistance()) {
+                    // Update the node distance table
+                    distanceTable.get(indexAux).setDistance(index.getDistance() + entry.getValue());
+                    distanceTable.get(indexAux).setNodeToSendpackage(entry.getKey());
+                } // End if
 
-            indexAux++;
+                indexAux++;
+            } // End for
         } // End for
     } // End updateDistanceTable
 
@@ -97,37 +97,7 @@ public class Node {
         } // End for 
 
         return -1;
-    } // End getNeighborDistanceByID
-
-    /* ***************************************************************
-    * Metodo: nodeExistsInArray
-    * Funcao: Given an id, search for a node with this id
-    * Parametros: id= The desiried node id, array= Nodes arrayList
-    * Retorno: A boolean
-    *************************************************************** */
-    public boolean nodeExistsInArray(int id, ArrayList<Node> array) {
-        for(Node node : array) {
-            if(node.getId() == id) return true;
-        } // End for
-
-        return false;
-    } // End nodeExistsInArray
-
-    /* ***************************************************************
-    * Metodo: correctDistanceTable
-    * Funcao: Update the distance table with the correct distance of this node index
-    * Parametros: void
-    * Retorno: void
-    *************************************************************** */
-    public void correctDistanceTable() {
-        for(Structure index : this.getDistanceTable()) { // Loop through distance table to find this node index
-            if(index.getNodeId() == this.id) {
-                // Update the distance table to correct it
-                index.setDistance(0);
-                index.setNodeToSendpackage(null);
-            } // End if
-        } // End for
-    } // End correctDistanceTable
+    } // End getNeighborDistanceById
 
     /* ***************************************************************
     * Metodo: getId

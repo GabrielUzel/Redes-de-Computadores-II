@@ -2,15 +2,13 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 14/05/2024
-* Ultima alteracao.: 22/05/2024
+* Ultima alteracao.: 23/05/2024
 * Nome.............: MainController
 * Funcao...........: Start the algorithm
 *************************************************************** */
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -82,38 +80,26 @@ public class MainController implements Initializable {
     @FXML
     void startAlgorithm(ActionEvent event) throws InterruptedException, FileNotFoundException, IOException {
         warningLabel.setVisible(false); // Warning label invisible
-        nodes.clear(); // Clear the nodes array to fill it aboves
-        resetAllDistanceTables(); // Reset all nodes distance tables with some edge is added or removed
+        nodes.clear(); // Clear the nodes array to fill it above
         setAllImagesVisible(); // All edges is show
-        String filePath = "backboneToUse.txt";
+        String filePath = "backbone.txt";
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, false));
         ArrayList<ImageView> edgesToSetInvisible = new ArrayList<>(); // Array list to store the edges image views that will be invisible
         for(CheckBox current : checkBoxes) {
-            if(current.isSelected()) { // Check what checkboxes are selected
-                // Write in the file a line that representes an edge, there will be 3 values, 2 nodes id and a weight 
-                String lineAux = current.getId().replaceAll("[^0-9]", ""); // Get the checkbox name and remove letters
-                int currentNode1Id = Integer.parseInt(lineAux.substring(0, 1));
-                int currentNode2Id = Integer.parseInt(lineAux.substring(1, 2));
-                int currentWeight = Integer.parseInt(lineAux.substring(2, 3));
-
-                String content = currentNode1Id + "" + currentNode2Id + "" + currentWeight;
-                writer.write(content); // Write the line 
-                writer.newLine();
-            } else {
+            if(!current.isSelected()) { // Check what checkboxes are not selected
                 edgesToSetInvisible.add(edges.get(checkBoxes.indexOf(current)));
-            } // End if-else
+            } // End if 
         } // End for
-        writer.close();
         
-        // Read the updated file and add the corrects neighbors
+        // Read the backbone file and add the corrects neighbors
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
+        String line = reader.readLine();
         while ((line = reader.readLine()) != null) {
+            String lineAux = line.replaceAll("[^0-9]", "");
             // Each line has 3 values as said before, here we take the 3 values and add to the nodes their neighbors with the correct weight
-            int currentNode1Id = Integer.parseInt(line.substring(0, 1));
-            int currentNode2Id = Integer.parseInt(line.substring(1, 2));
-            int currentWeight= Integer.parseInt(line.substring(2, 3));
+            int currentNode1Id = Integer.parseInt(lineAux.substring(0, 1));
+            int currentNode2Id = Integer.parseInt(lineAux.substring(1, 2));
+            int currentWeight = Integer.parseInt(lineAux.substring(2, 3));
 
             Node currentNode1 = getNodeById(currentNode1Id);
             Node currentNode2 = getNodeById(currentNode2Id);
@@ -249,73 +235,4 @@ public class MainController implements Initializable {
             default: return node9;
         } // End switch-case
     } // End getNodeById
-
-    /* ***************************************************************
-    * Metodo: resetAllDistanceTables
-    * Funcao: Reset all nodes distance table to initial values
-    * Parametros: void
-    * Retorno: void
-    *************************************************************** */
-    public void resetAllDistanceTables() {
-        // Create a new array with the initial values
-        ArrayList<Structure> arrayAux = new ArrayList<>();
-
-        arrayAux.add(new Structure(1, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(2, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(3, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(4, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(5, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(6, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(7, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(8, Integer.MAX_VALUE - 10, null));
-        arrayAux.add(new Structure(9, Integer.MAX_VALUE - 10, null));
-
-        /* New ArrayList for each node. These new arrays were created because arraylists are passed by
-        reference, so if node1 distance table is changed, node2 distance table is changed too. That 
-        behavior is undesirable */
-        ArrayList<Structure> forNode1 = new ArrayList<>();
-        ArrayList<Structure> forNode2 = new ArrayList<>();
-        ArrayList<Structure> forNode3 = new ArrayList<>();
-        ArrayList<Structure> forNode4 = new ArrayList<>();
-        ArrayList<Structure> forNode5 = new ArrayList<>();
-        ArrayList<Structure> forNode6 = new ArrayList<>();
-        ArrayList<Structure> forNode7 = new ArrayList<>();
-        ArrayList<Structure> forNode8 = new ArrayList<>();
-        ArrayList<Structure> forNode9 = new ArrayList<>();
-
-        // Copy the values
-        for(Structure item : arrayAux) {
-            forNode1.add(item.clone());
-            forNode2.add(item.clone());
-            forNode3.add(item.clone());
-            forNode4.add(item.clone());
-            forNode5.add(item.clone());
-            forNode6.add(item.clone());
-            forNode7.add(item.clone());
-            forNode8.add(item.clone());
-            forNode9.add(item.clone());
-        }
-
-        // Update each node distance table
-        node1.setDistanceTable(forNode1);
-        node2.setDistanceTable(forNode2);
-        node3.setDistanceTable(forNode3);
-        node4.setDistanceTable(forNode4);
-        node5.setDistanceTable(forNode5);
-        node6.setDistanceTable(forNode6);
-        node7.setDistanceTable(forNode7);
-        node8.setDistanceTable(forNode8);
-        node9.setDistanceTable(forNode9);
-
-        // For each node, the distance for itself is 0, this function corrects the node distance table
-        node1.correctDistanceTable();
-        node2.correctDistanceTable();
-        node3.correctDistanceTable();
-        node4.correctDistanceTable();
-        node5.correctDistanceTable();
-        node6.correctDistanceTable();
-        node7.correctDistanceTable();
-        node8.correctDistanceTable();
-        node9.correctDistanceTable();
-    } // End resetAllDistanceTables
 } // End class MainController 
