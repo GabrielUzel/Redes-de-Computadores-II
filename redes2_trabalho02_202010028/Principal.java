@@ -21,7 +21,7 @@ public class Principal extends Application {
     * Retorno: void
     *************************************************************** */
     public static void main (String [] args) {
-        launch (args);
+        launch(args);
     } // End main
 
     /* ***************************************************************
@@ -31,7 +31,7 @@ public class Principal extends Application {
     * Retorno: void
     *************************************************************** */
     @Override
-    public void start (Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException {
         // Controller declaration to prevent exception
         MainController controller = new MainController();
 
