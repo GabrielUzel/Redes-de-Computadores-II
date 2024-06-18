@@ -47,33 +47,31 @@ public class Package extends Thread {
     * Retorno: void
     *************************************************************** */
     public void iconAnimation() {
-        icon.setFitWidth(19); // Set icon width
-        icon.setFitHeight(29); // Set icon width
-        icon.setVisible(true); // Make the image view visible
-
         Platform.runLater(() -> {
+            icon.setFitWidth(19); // Set icon width
+            icon.setFitHeight(29); // Set icon width
+            icon.setVisible(true); // Make the image view visible
+
             // Set the image view the right initial coordinates
             icon.setLayoutX(senderCoordinates[0]); 
             icon.setLayoutY(senderCoordinates[1]);
-        });
 
-        TranslateTransition animation = new TranslateTransition(Duration.millis(2000));
-        animation.setNode(icon); // Set the animation image
-        animation.setCycleCount(1); // The animation occours one single time
-        // Set the image view final coordinates
-        animation.setByX(neighborCoordinates[0] - senderCoordinates[0]); 
-        animation.setByY(neighborCoordinates[1] - senderCoordinates[1]);
+            TranslateTransition animation = new TranslateTransition(Duration.millis(2000));
+            animation.setNode(icon); // Set the animation image
+            animation.setCycleCount(1); // The animation occours one single time
+            // Set the image view final coordinates
+            animation.setByX(neighborCoordinates[0] - senderCoordinates[0]); 
+            animation.setByY(neighborCoordinates[1] - senderCoordinates[1]);
 
-        // At the end of the animation, set the icon invisible and return to the initial coordinates
-        animation.setOnFinished(event -> {
-            icon.setVisible(false);
-            Platform.runLater(() -> {
-                icon.setTranslateX(0);
-                icon.setTranslateY(0);
+            // At the end of the animation, set the icon invisible and return to the initial coordinates
+            animation.setOnFinished(event -> {
+                icon.setVisible(false);
+                    icon.setTranslateX(0);
+                    icon.setTranslateY(0);
             });
-        });
 
-        animation.play(); // Start animation
+            animation.play(); // Start animation
+        });
     } // End iconAnimation
     
     /* ***************************************************************

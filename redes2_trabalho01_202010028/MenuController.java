@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Region;
 
 public class MenuController implements Initializable {
     // Fxml variables
@@ -94,6 +95,7 @@ public class MenuController implements Initializable {
         Alert message = new Alert(AlertType.INFORMATION);
         message.setTitle("IMPORTANTE!!");
         message.setContentText("Esse algoritmo utiliza threads que não param para funcionar, caso deseje trocar de opção você terá que fechar e abrir o programa. Para a opção 4, foi criada uma variável chamada arrived para controlara chegada do pacote ao destino, quando essa variável é igual a true os roteadores irão parar de mandar pacotes.");
+        message.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         message.show();
     } // End showMessage
 } // End class MenuController
