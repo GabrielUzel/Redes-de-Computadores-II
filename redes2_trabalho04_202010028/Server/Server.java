@@ -8,15 +8,20 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
 import Server.models.Group;
+import Server.utils.Apdus;
 
 public class Server extends Thread {
     private static int port = 5000;
     private ServerSocket server;
     private Socket client;
-    String message;
     Scanner readTerminal = new Scanner(System.in);
+    String receivedString;
+    String apdu;
+    String user;
+    String group;
+    String message;
 
-    private ArrayList<Group> groupChats = new ArrayList<>();
+    private static ArrayList<Group> groupChats = new ArrayList<>();
 
     public Server(Socket client) {
         this.client = client;
@@ -27,6 +32,10 @@ public class Server extends Thread {
     }
 
     public void startServer() {        
+        // área de testes
+            // int teste = 2;
+            // System.out.println(Apdus.getApdu(teste));
+        // área de testes
         try {
             server = new ServerSocket(port);
 
@@ -35,7 +44,6 @@ public class Server extends Thread {
                 System.out.println("Cliente conectado do IP " + client.getInetAddress().getHostAddress());
                 Thread newThread = new Server(client);
                 newThread.start();
-
             }
         } catch(IOException e) {
             e.printStackTrace();
@@ -50,8 +58,21 @@ public class Server extends Thread {
             messageToSend.flush();
 
             while(true) {
-                message = (String) messageReceived.readObject();
-                System.out.println("CLIENTE" + client.getInetAddress().getHostAddress() + ">> " + message);
+                receivedString = (String) messageReceived.readObject();
+                int apduNumber = receivedString.charAt(0) - '0';
+
+                if(Apdus.getApdu(apduNumber) == "JOIN") {
+
+                } 
+
+                if(Apdus.getApdu(apduNumber) == "LEAVE") {
+                    
+                }
+
+                if(Apdus.getApdu(apduNumber) == "SEND") {
+                    
+                }
+                
                 messageToSend.flush();
             }
         } catch(IOException e) {
