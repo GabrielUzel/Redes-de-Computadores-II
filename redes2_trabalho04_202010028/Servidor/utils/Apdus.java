@@ -1,4 +1,4 @@
-package Server.utils;
+package Servidor.utils;
 
 public enum Apdus {
     JOIN(1), LEAVE(2), SEND(3);

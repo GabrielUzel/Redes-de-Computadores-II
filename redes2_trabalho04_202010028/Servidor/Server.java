@@ -1,4 +1,4 @@
-package Server;
+package Servidor;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,8 +7,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Scanner;
-import Server.models.Group;
-import Server.utils.Apdus;
+
+import Servidor.models.Group;
+import Servidor.utils.Apdus;
+import Servidor.view.MainController;
 
 public class Server extends Thread {
     private static int port = 5000;
@@ -32,16 +34,13 @@ public class Server extends Thread {
     }
 
     public void startServer() {        
-        // área de testes
-            // int teste = 2;
-            // System.out.println(Apdus.getApdu(teste));
-        // área de testes
         try {
             server = new ServerSocket(port);
+            MainController.addLog("Server started");
 
             while(true) {
                 Socket client = server.accept();
-                System.out.println("Cliente conectado do IP " + client.getInetAddress().getHostAddress());
+                MainController.addLog("Cliente conectado do IP " + client.getInetAddress().getHostAddress());
                 Thread newThread = new Server(client);
                 newThread.start();
             }
