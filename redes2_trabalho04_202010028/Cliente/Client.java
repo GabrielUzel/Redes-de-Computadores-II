@@ -3,15 +3,12 @@ package Cliente;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client extends Thread {
     private static int port = 5000;
     private Socket client;
-
     private ObjectOutputStream sendMessage;
-    String message;
-    Scanner readTerminal = new Scanner(System.in);
+    private static String message = null;
 
     public Client(Socket client) {
         this.client = client;
@@ -21,32 +18,33 @@ public class Client extends Thread {
 
     }
 
-    public void startClient() {
+    @Override
+    public void run() {
         try {
             client = new Socket("127.0.0.1", port);
             sendMessage = new ObjectOutputStream(client.getOutputStream());
             sendMessage.flush();
-            Thread newThread = new Client(client);
-            newThread.start();
-        } catch(IOException e) {
-            e.printStackTrace();
-        } 
-    } // End startClient
 
-    @Override
-    public void run() {
-        try {
             while(true) {
-                message = sendMessage();
-                sendMessage.writeObject(message);
-                sendMessage.flush();
+                Thread.sleep(1000);
+                if(message != null) {
+                    sendMessage.writeObject(message);
+                    sendMessage.flush();
+                    message = null;
+                }
             }
         } catch(IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         } 
     } // End run
 
-    public String sendMessage() {
-        return "teste";
+    public static void sendMessage(String apdu, String user, String group, String messageToSend) {
+        if(messageToSend == "") {
+            message = apdu + "*" + user + "*" + group + ";";
+        }
+
+        message = apdu + "*" + user + "*" + group + "*" + messageToSend + ";";
     }
 } // End Client

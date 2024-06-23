@@ -14,6 +14,6 @@
          </font>
       </Label>
       <TextArea fx:id="serverTextArea" editable="false" layoutX="38.0" layoutY="81.0" prefHeight="382.0" prefWidth="624.0" />
-      <Button fx:id="startServerButton" layoutX="566.0" layoutY="21.0" mnemonicParsing="false" onAction="#startServer" text="Start server" />
+      <Button fx:id="startServerButton" layoutX="566.0" layoutY="21.0" mnemonicParsing="false" onAction="#startServer" style="-fx-background-color: #6272A4; -fx-cursor: hand;" text="Start server" textFill="WHITE" />
    </children>
 </AnchorPane>

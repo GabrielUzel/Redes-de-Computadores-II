@@ -9,6 +9,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Principal extends Application {
+    private static Stage stage;
+    private static Scene mainScene;
+    private static Scene groupsScene;
+    private static Scene selectedGroupScene;
+
     /* ***************************************************************
     * Metodo: main
     * Funcao: Execute the program
@@ -26,17 +31,46 @@ public class Principal extends Application {
     * Retorno: void
     *************************************************************** */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage currentStage) throws IOException {
         // Controller declaration to prevent exception
         MainController controller = new MainController();
 
+        // Define the variable to the current stage to open the correct window
+        stage = currentStage;
+
         // Open file and set scene
         Parent mainParent = FXMLLoader.load(getClass().getResource("view/ClientPage.fxml"));
-        Scene mainScene = new Scene(mainParent);
+        Parent groupsParent = FXMLLoader.load(getClass().getResource("view/GroupsPage.fxml"));
+        Parent selectedGroupParent = FXMLLoader.load(getClass().getResource("view/SelectedGroupPage.fxml"));
+
+        // Set scenes
+        mainScene = new Scene(mainParent);
+        groupsScene = new Scene(groupsParent);
+        selectedGroupScene = new Scene(selectedGroupParent);
 
         // Show UI
         stage.setTitle("Client");
         stage.setScene(mainScene);
         stage.show();        
     } // End start
+
+    /* ***************************************************************
+    * Metodo: changeSceneGroups
+    * Funcao: Change the scene to open the groups page
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
+    public static void changeSceneGroups() {
+        stage.setScene(groupsScene);
+    } // End changeSceneGroups
+
+    /* ***************************************************************
+    * Metodo: changeSceneSelectedGroup
+    * Funcao: Change the scene to open the selected group page
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
+    public static void changeSceneSelectedGroup() {
+        stage.setScene(selectedGroupScene);
+    } // End changeSceneGroups
 } // End Principal

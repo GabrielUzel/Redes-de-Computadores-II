@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 public class Group {
     private int id;
-    private String name;
     private ArrayList<User> participants = new ArrayList<>();
-    private ArrayList<String> messages = new ArrayList<>();
 
-    public Group(int id, String name) {
+    public Group(int id) {
         this.id = id;
-        this.name = name;
     }
 
-    public ArrayList<String> getMessages() {
-        return this.messages;
+    public void addParticipant(User user) {
+        participants.add(user);
+    }
+
+    public int getId() {
+        return this.id;
     }
 }
