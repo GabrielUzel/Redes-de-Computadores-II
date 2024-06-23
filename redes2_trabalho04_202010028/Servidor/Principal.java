@@ -9,7 +9,6 @@
 package Servidor;
 
 import java.io.IOException;
-
 import Servidor.view.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,4 +47,4 @@ public class Principal extends Application {
         stage.setScene(mainScene);
         stage.show();        
     } // End start
-} // End Principal
+} // End class Principal

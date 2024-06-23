@@ -3,7 +3,6 @@ package Cliente;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
 import Cliente.util.MessageObject;
 
 public class Client extends Thread {
@@ -13,10 +12,10 @@ public class Client extends Thread {
     private static String message = null;
     private MessageObject messageObject;
 
+    // Constructors
     public Client(Socket client) {
         this.client = client;
     }
-
     public Client() {
         
     }
