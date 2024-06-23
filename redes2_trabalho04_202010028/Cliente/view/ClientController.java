@@ -26,6 +26,7 @@ public class ClientController {
 
     @FXML
     void enterGroup(ActionEvent event) {
+        Client.sendMessage("1", String.valueOf(((Control) event.getSource()).getId().charAt(5)), "");
         GroupController.groupLabel_.setText("Grupo " + ((Control) event.getSource()).getId().charAt(5));
         Principal.changeSceneSelectedGroup();
     }

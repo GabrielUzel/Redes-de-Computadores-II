@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import Cliente.util.MessageObject;
 import Servidor.models.*;
 import Servidor.utils.Apdus;
 import Servidor.view.MainController;
@@ -15,9 +16,9 @@ public class Server extends Thread {
     private static int port = 5000;
     private ServerSocket server;
     private Socket client;
-    String receivedString;
+    private MessageObject messageObject;
+    private static final ArrayList<Socket> clients = new ArrayList<>();
     private static ArrayList<Group> groupChats = new ArrayList<>();
-    private static ArrayList<User> users = new ArrayList<>();
 
     public Server(Socket client) {
         this.client = client;
@@ -34,6 +35,7 @@ public class Server extends Thread {
 
             while(true) {
                 Socket client = server.accept();
+                clients.add(client);
                 MainController.addLog("Cliente conectado do IP " + client.getRemoteSocketAddress().toString());
                 Thread newThread = new Server(client);
                 newThread.start();
@@ -51,22 +53,32 @@ public class Server extends Thread {
             messageToSend.flush();
 
             while(true) {
-                receivedString = (String) messageReceived.readObject();
-                System.out.println(receivedString);
-                int apduNumber = receivedString.charAt(0) - '0';
-                
+                messageObject = (MessageObject) messageReceived.readObject();
+                String receivedString = messageObject.getMessage();
+                String[] stringElement = receivedString.split("\\*");
+                int apduNumber = Integer.valueOf(stringElement[0]);
+                String user = messageObject.getClient();
+                int group = Integer.valueOf(stringElement[1]);
 
                 if(Apdus.getApdu(apduNumber) == "JOIN") {
-                    System.out.println("JOIN nessa porra");
+                    if(!groupExists(group)) {
+                        Group groupToBeCreated = new Group(group);
+                        groupChats.add(groupToBeCreated);
+                    }
+
+                    if(!userIsInGroup(group, user)) {
+                        MainController.addLog(user + " joined the group " + group); 
+                        addParticipantToGroup(group, client);
+                    }
                 } 
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {
-                    System.out.println("LEAVE nessa porra");
+                    MainController.addLog(user + "left the group " + group);
                 }
 
                 if(Apdus.getApdu(apduNumber) == "SEND") {
-                    MainController.addLog("");
-                    System.out.println("SEND nessa porra");
+                    String message = stringElement[2];
+                    MainController.addLog(user + " in group " + group + " >> " + message);
                 }
                 
                 messageToSend.flush();
@@ -78,7 +90,41 @@ public class Server extends Thread {
         }
     }
 
-    public static void addGroup(int groupNumber) {
-        groupChats.add(new Group(groupNumber));
+    public Boolean groupExists(int id) {
+        for(Group group : groupChats) {
+            if(group.getId() == id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Group searchGroup(int id) {
+        for(Group group : groupChats) {
+            if(group.getId() == id) {
+                return group;
+            }
+        }
+
+        return null;
+    }
+
+    public void addParticipantToGroup(int groupId, Socket client) {
+        for(Group group : groupChats) {
+            if(group.getId() == groupId) {
+                group.addParticipant(client);
+            }
+        }
+    }
+
+    public Boolean userIsInGroup(int id, String userIp) {
+        for(Group group : groupChats) {
+            if(group.getId() == id) {
+                return group.participantExists(userIp);
+            }
+        }
+
+        return false;
     }
 }

@@ -32,7 +32,7 @@ public class GroupController implements Initializable {
         sendMessageTextField.clear();
 
         if(message != "") {
-            Client.sendMessage("3", "user", groupLabel.getText().substring(groupLabel.getText().length() - 1), message);
+            Client.sendMessage("3", groupLabel.getText().substring(groupLabel.getText().length() - 1), message);
         }
     }
 }

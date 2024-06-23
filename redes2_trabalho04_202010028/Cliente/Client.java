@@ -4,18 +4,21 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import Cliente.util.MessageObject;
+
 public class Client extends Thread {
     private static int port = 5000;
     private Socket client;
     private ObjectOutputStream sendMessage;
     private static String message = null;
+    private MessageObject messageObject;
 
     public Client(Socket client) {
         this.client = client;
     }
 
     public Client() {
-
+        
     }
 
     @Override
@@ -28,7 +31,8 @@ public class Client extends Thread {
             while(true) {
                 Thread.sleep(1000);
                 if(message != null) {
-                    sendMessage.writeObject(message);
+                    messageObject = new MessageObject(message, String.valueOf(client.getInetAddress()));
+                    sendMessage.writeObject(messageObject);
                     sendMessage.flush();
                     message = null;
                 }
@@ -40,11 +44,11 @@ public class Client extends Thread {
         } 
     } // End run
 
-    public static void sendMessage(String apdu, String user, String group, String messageToSend) {
+    public static void sendMessage(String apdu, String group, String messageToSend) {        
         if(messageToSend == "") {
-            message = apdu + "*" + user + "*" + group + ";";
+            message = apdu + "*" + group + ";";
         }
 
-        message = apdu + "*" + user + "*" + group + "*" + messageToSend + ";";
-    }
+        message = apdu + "*" + group + "*" + messageToSend + ";";
+    } // End sendMessage
 } // End Client
