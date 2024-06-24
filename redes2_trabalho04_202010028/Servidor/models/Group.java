@@ -32,6 +32,16 @@ public class Group {
     } // End addParticipant
 
     /* ***************************************************************
+    * Metodo: removeParticipant
+    * Funcao: Romve a participant from the array
+    * Parametros: user= A connected client
+    * Retorno: void
+    *************************************************************** */
+    public void removeParticipant(Socket user) {
+        participants.remove(user);
+    } // End removeParticipant
+
+    /* ***************************************************************
     * Metodo: participantExists
     * Funcao: Given a ip, verify if there is a participant with this ip
     * Parametros: participantIp= The ip for searching 
@@ -55,4 +65,14 @@ public class Group {
     public int getId() {
         return this.id;
     } // End getID
+
+    /* ***************************************************************
+    * Metodo: getParticipants
+    * Funcao: Return array list of participants
+    * Parametros: void
+    * Retorno: Array list with connections
+    *************************************************************** */
+    public ArrayList<Socket> getParticipants() {
+        return this.participants;
+    } // End getParticipants
 } // End class Group

@@ -16,6 +16,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import Cliente.util.MessageObject;
+import Cliente.view.GroupController;
 import Servidor.models.*;
 import Servidor.utils.Apdus;
 import Servidor.view.MainController;
@@ -82,6 +83,7 @@ public class Server extends Thread {
                 String[] stringElement = receivedString.split("\\*");
 
                 String user = messageObject.getClient();
+                String clientName = messageObject.getClientName();
                 int apduNumber = Integer.valueOf(stringElement[0]);
                 int groupId = Integer.valueOf(stringElement[1]);
 
@@ -103,11 +105,24 @@ public class Server extends Thread {
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {
+                    searchGroup(groupId).removeParticipant(client);
                     MainController.addLog(user + "left the group " + groupId);
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "SEND") {
                     String message = stringElement[2];
+                    MessageObject messageObject = new MessageObject(message, user, clientName);
+
+                    for(Socket participant : searchGroup(groupId).getParticipants()) {
+                        if(user.equals(String.valueOf(participant.getInetAddress()))) {
+                            GroupController.addMessageFromMe(message);
+                            continue;
+                        } 
+
+                        messageToSend.writeObject(messageObject);
+                        messageToSend.flush();
+                    }
+
                     MainController.addLog(user + " in group " + groupId + " >> " + message);
                 } // End if
                 

@@ -9,7 +9,8 @@
 package Cliente;
 
 import java.io.IOException;
-import Servidor.view.MainController;
+
+import Cliente.view.ClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -41,7 +42,7 @@ public class Principal extends Application {
     @Override
     public void start(Stage currentStage) throws IOException {
         // Controller declaration to prevent exception
-        MainController controller = new MainController();
+        ClientController controller = new ClientController();
 
         // Define the variable to the current stage to open the correct window
         stage = currentStage;

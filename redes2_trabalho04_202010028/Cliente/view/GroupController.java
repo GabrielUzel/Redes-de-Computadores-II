@@ -2,7 +2,6 @@ package Cliente.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import Cliente.Client;
 import Cliente.Principal;
 import javafx.event.ActionEvent;
@@ -34,5 +33,13 @@ public class GroupController implements Initializable {
         if(message != "") {
             Client.sendMessage("3", groupLabel.getText().substring(groupLabel.getText().length() - 1), message);
         }
+    }
+
+    public static void addMessageFromMe(String message) {
+        System.out.println(message);
+    }
+
+    public static void addMessageFromOtherUser(String message, String userName) {
+        System.out.println(userName + " >> " + message);
     }
 }
