@@ -16,7 +16,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import Cliente.util.MessageObject;
-import Cliente.view.GroupController;
 import Servidor.models.*;
 import Servidor.utils.Apdus;
 import Servidor.view.MainController;
@@ -45,7 +44,7 @@ public class Server extends Thread {
     *************************************************************** */
     public void startServer() {        
         try {
-            server = new ServerSocket(port, 50, InetAddress.getByName("10.6.2.218"));
+            server = new ServerSocket(port, 50, InetAddress.getByName("10.6.2.218"));            
             MainController.addLog("Server started on: " + server.getInetAddress().getHostAddress());
 
             while(true) {
@@ -73,8 +72,6 @@ public class Server extends Thread {
         try {
             // New objects to receive and send data
             ObjectInputStream messageReceived = new ObjectInputStream(client.getInputStream());
-            ObjectOutputStream messageToSend = new ObjectOutputStream(client.getOutputStream());
-            messageToSend.flush();
 
             while(true) {
                 // Receive a message and divide it into variables
@@ -82,7 +79,7 @@ public class Server extends Thread {
                 String receivedString = messageObject.getMessage();
                 String[] stringElement = receivedString.split("\\*");
 
-                String clientIp = messageObject.getClientIp();
+                String clientIp = "/" + messageObject.getClientIp();
                 String clientName = messageObject.getClientName();
                 int apduNumber = Integer.valueOf(stringElement[0]);
                 int groupId = Integer.valueOf(stringElement[1]);
@@ -100,12 +97,12 @@ public class Server extends Thread {
                     if(!searchGroup(groupId).participantExists(clientIp)) {
                         // If isnt participating, add user
                         MainController.addLog(clientIp + " joined the group " + groupId); 
-                        searchGroup(groupId).addParticipant(client);
-                    }
+                        searchGroup(groupId).addParticipant(searchClientByIp(clientIp));
+                    } // End if
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {
-                    searchGroup(groupId).removeParticipant(client);
+                    searchGroup(groupId).removeParticipant(searchClientByIp(clientIp));
                     MainController.addLog(clientIp + "left the group " + groupId);
                 } // End if
 
@@ -113,21 +110,14 @@ public class Server extends Thread {
                     String message = stringElement[2];
                     MessageObject messageObject = new MessageObject(message, clientIp, clientName);
 
-                    // Search for clients in the group
                     for(Socket participant : searchGroup(groupId).getParticipants()) {
-                        // Found the client that sent the message
-                        if(clientIp.equals(String.valueOf(participant.getInetAddress()))) {
-                            GroupController.addMessageFromMe(message); // Update ui
-                        } else {
-                            messageToSend.writeObject(messageObject);
-                            messageToSend.flush();
-                        } // End if/else
-                    } // End for
+                        ObjectOutputStream messageSender = new ObjectOutputStream(participant.getOutputStream());
+                        messageSender.writeObject(messageObject);
+                        messageSender.flush();
+                    }
 
                     MainController.addLog(clientIp + " in group " + groupId + " >> " + message);
                 } // End if
-                
-                messageToSend.flush(); // Clear the object
             } // End while
         } catch(IOException e) {
             e.printStackTrace();
@@ -153,4 +143,14 @@ public class Server extends Thread {
 
         return null;
     } // End searchGroup
+
+    public Socket searchClientByIp(String ip) {
+        for(Socket client : clients) {
+            if(ip.equals(String.valueOf(client.getInetAddress()))) {
+                return client;
+            }
+        }
+
+        return null;
+    }
 } // End class Server

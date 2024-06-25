@@ -68,7 +68,7 @@ public class Client extends Thread {
             while(true) {
                 Thread.sleep(1000);
                 if(message != null) { // If true, user sent a new message
-                    messageObject = new MessageObject(message, String.valueOf(client.getInetAddress()), clientName);
+                    messageObject = new MessageObject(message, String.valueOf(client.getLocalAddress().getHostAddress()), clientName);
                     sendMessage.writeObject(messageObject); // Send message to server
                     sendMessage.flush();
                     message = null;
