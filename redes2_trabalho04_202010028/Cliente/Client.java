@@ -17,7 +17,7 @@ import Cliente.util.MessageObject;
 import Cliente.view.GroupController;
 
 public class Client extends Thread {
-    private static int port = 5000;
+    private static int port = 7327;
     private String clientName;
     private Socket client;
     private static String message = null;
@@ -40,7 +40,7 @@ public class Client extends Thread {
     @Override
     public void run() {
         try {
-            client = new Socket("127.0.0.1", port);
+            client = new Socket("10.6.2.218", port);
             ObjectOutputStream sendMessage = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream receiveMessage = new ObjectInputStream(client.getInputStream());
             sendMessage.flush();

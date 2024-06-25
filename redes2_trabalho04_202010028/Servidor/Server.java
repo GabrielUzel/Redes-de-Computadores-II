@@ -22,7 +22,7 @@ import Servidor.utils.Apdus;
 import Servidor.view.MainController;
 
 public class Server extends Thread {
-    private static int port = 5000;
+    private static int port = 7327;
     private ServerSocket server;
     private Socket client;
     private MessageObject messageObject; // Object that will contain received messages
@@ -45,8 +45,8 @@ public class Server extends Thread {
     *************************************************************** */
     public void startServer() {        
         try {
-            server = new ServerSocket(port, 50, InetAddress.getByName("127.0.0.1"));
-            MainController.addLog("Server started on: " + server.getLocalSocketAddress());
+            server = new ServerSocket(port, 50, InetAddress.getByName("10.6.2.218"));
+            MainController.addLog("Server started on: " + server.getInetAddress().getHostAddress());
 
             while(true) {
                 Socket client = server.accept();
@@ -118,11 +118,10 @@ public class Server extends Thread {
                         // Found the client that sent the message
                         if(clientIp.equals(String.valueOf(participant.getInetAddress()))) {
                             GroupController.addMessageFromMe(message); // Update ui
-                            continue;
-                        } // End if
-
-                        messageToSend.writeObject(messageObject);
-                        messageToSend.flush();
+                        } else {
+                            messageToSend.writeObject(messageObject);
+                            messageToSend.flush();
+                        } // End if/else
                     } // End for
 
                     MainController.addLog(clientIp + " in group " + groupId + " >> " + message);
