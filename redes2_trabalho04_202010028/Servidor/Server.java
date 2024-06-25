@@ -2,7 +2,7 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 19/06/2024
-* Ultima alteracao.: //
+* Ultima alteracao.: 28/06/2024
 * Nome.............: Server
 * Funcao...........: Receive and send information
 *************************************************************** */
@@ -82,7 +82,7 @@ public class Server extends Thread {
                 String receivedString = messageObject.getMessage();
                 String[] stringElement = receivedString.split("\\*");
 
-                String user = messageObject.getClient();
+                String clientIp = messageObject.getClientIp();
                 String clientName = messageObject.getClientName();
                 int apduNumber = Integer.valueOf(stringElement[0]);
                 int groupId = Integer.valueOf(stringElement[1]);
@@ -97,33 +97,35 @@ public class Server extends Thread {
                     } // End if
 
                     // Verify if the user is participating in the group they entered
-                    if(!searchGroup(groupId).participantExists(user)) {
+                    if(!searchGroup(groupId).participantExists(clientIp)) {
                         // If isnt participating, add user
-                        MainController.addLog(user + " joined the group " + groupId); 
+                        MainController.addLog(clientIp + " joined the group " + groupId); 
                         searchGroup(groupId).addParticipant(client);
                     }
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {
                     searchGroup(groupId).removeParticipant(client);
-                    MainController.addLog(user + "left the group " + groupId);
+                    MainController.addLog(clientIp + "left the group " + groupId);
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "SEND") {
                     String message = stringElement[2];
-                    MessageObject messageObject = new MessageObject(message, user, clientName);
+                    MessageObject messageObject = new MessageObject(message, clientIp, clientName);
 
+                    // Search for clients in the group
                     for(Socket participant : searchGroup(groupId).getParticipants()) {
-                        if(user.equals(String.valueOf(participant.getInetAddress()))) {
-                            GroupController.addMessageFromMe(message);
+                        // Found the client that sent the message
+                        if(clientIp.equals(String.valueOf(participant.getInetAddress()))) {
+                            GroupController.addMessageFromMe(message); // Update ui
                             continue;
-                        } 
+                        } // End if
 
                         messageToSend.writeObject(messageObject);
                         messageToSend.flush();
-                    }
+                    } // End for
 
-                    MainController.addLog(user + " in group " + groupId + " >> " + message);
+                    MainController.addLog(clientIp + " in group " + groupId + " >> " + message);
                 } // End if
                 
                 messageToSend.flush(); // Clear the object

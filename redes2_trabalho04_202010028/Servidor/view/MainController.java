@@ -2,9 +2,9 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 19/06/2024
-* Ultima alteracao.: //
+* Ultima alteracao.: 28/06/2024
 * Nome.............: MainController
-* Funcao...........: Start server
+* Funcao...........: Controls server user interface
 *************************************************************** */
 package Servidor.view;
 
@@ -21,6 +21,17 @@ public class MainController implements Initializable {
     // Fxml variables
     @FXML private TextArea serverTextArea;
     private static TextArea serverTextArea_; // Need a static textArea for other classes add server logs
+
+    /* ***************************************************************
+    * Metodo: initialize
+    * Funcao: Define methods that executes when the current window opens
+    * Parametros: location&resources= Fxml arguments
+    * Retorno: void
+    *************************************************************** */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        serverTextArea_ = serverTextArea;
+    } // End initialize
     
     /* ***************************************************************
     * Metodo: startServer
@@ -45,15 +56,4 @@ public class MainController implements Initializable {
             serverTextArea_.appendText(log + "\n"); // Add log to gui
         });
     } // End addLog
-
-    /* ***************************************************************
-    * Metodo: initialize
-    * Funcao: Define methods that executes when the current window opens
-    * Parametros: location&resources= Fxml arguments
-    * Retorno: void
-    *************************************************************** */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        serverTextArea_ = serverTextArea;
-    } // End initialize
 } // End class MainController

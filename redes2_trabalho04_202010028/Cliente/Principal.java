@@ -2,14 +2,13 @@
 * Autor............: Gabriel Uzel Fonseca
 * Matricula........: 202010028
 * Inicio...........: 19/06/2024
-* Ultima alteracao.: //
+* Ultima alteracao.: 28/06/2024
 * Nome.............: Principal
 * Funcao...........: Start the client interface
 *************************************************************** */
 package Cliente;
 
 import java.io.IOException;
-
 import Cliente.view.ClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
