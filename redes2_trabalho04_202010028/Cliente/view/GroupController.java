@@ -69,8 +69,8 @@ public class GroupController implements Initializable {
     * Parametros: message= The string message
     * Retorno: void
     *************************************************************** */
-    public static void addMessageFromMe(String message) {
-        System.out.println(message);
+    public static void addMessageFromMe(String message, String groupId) {
+        System.out.println(message + " >> Group: " + groupId);
     } // End addMessageFromMe
 
     /* ***************************************************************
@@ -79,8 +79,8 @@ public class GroupController implements Initializable {
     * Parametros: message= The string message, userName= Client that sent the message
     * Retorno: void
     *************************************************************** */
-    public static void addMessageFromOtherUser(String message, String userName) {
-        System.out.println(userName + " >> " + message);
+    public static void addMessageFromOtherUser(String message, String userName, String groupId) {
+        System.out.println(userName + " >> " + message + " >> Group: " + groupId);
     } // End addMessageFromOtherUser
 
 //     public void sendMessage(){

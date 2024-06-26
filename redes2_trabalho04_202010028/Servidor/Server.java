@@ -17,7 +17,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import Cliente.util.MessageObject;
 import Servidor.models.*;
-import Servidor.utils.Apdus;
+import Servidor.utils.*;
 import Servidor.view.MainController;
 
 public class Server extends Thread {
@@ -72,6 +72,8 @@ public class Server extends Thread {
         try {
             // New objects to receive and send data
             ObjectInputStream messageReceived = new ObjectInputStream(client.getInputStream());
+            ObjectOutputStream messageToSend = new ObjectOutputStream(client.getOutputStream());
+            messageToSend.flush();
 
             while(true) {
                 // Receive a message and divide it into variables
@@ -82,14 +84,14 @@ public class Server extends Thread {
                 String clientIp = "/" + messageObject.getClientIp();
                 String clientName = messageObject.getClientName();
                 int apduNumber = Integer.valueOf(stringElement[0]);
-                int groupId = Integer.valueOf(stringElement[1]);
+                String groupId = stringElement[1];
 
                 // Verify which apdu was called
                 if(Apdus.getApdu(apduNumber) == "JOIN") {
                     // Verify if, when a user enters a group, that group doesnt exists in DB
                     if(searchGroup(groupId) == null) {
                         // If doesnt exists, create a new group
-                        Group groupToBeCreated = new Group(groupId);
+                        Group groupToBeCreated = new Group(Integer.valueOf(groupId));
                         groupChats.add(groupToBeCreated);
                     } // End if
 
@@ -108,13 +110,14 @@ public class Server extends Thread {
 
                 if(Apdus.getApdu(apduNumber) == "SEND") {
                     String message = stringElement[2];
-                    MessageObject messageObject = new MessageObject(message, clientIp, clientName);
+                    MessageObject messageObject = new MessageObject(message, clientIp, clientName, groupId);
 
                     for(Socket participant : searchGroup(groupId).getParticipants()) {
-                        ObjectOutputStream messageSender = new ObjectOutputStream(participant.getOutputStream());
+                        MyObjectOutputStream messageSender = new MyObjectOutputStream(participant.getOutputStream());
                         messageSender.writeObject(messageObject);
                         messageSender.flush();
-                    }
+                        messageSender.reset();
+                    } // End for
 
                     MainController.addLog(clientIp + " in group " + groupId + " >> " + message);
                 } // End if
@@ -132,10 +135,10 @@ public class Server extends Thread {
     * Parametros: id= The desired group id
     * Retorno: A group class
     *************************************************************** */
-    public Group searchGroup(int id) {
+    public Group searchGroup(String id) {
         // Iterate over group DB
         for(Group group : groupChats) {
-            if(group.getId() == id) {
+            if(group.getId() == Integer.valueOf(id)) {
                 // Found the group
                 return group;
             } // End if
@@ -144,13 +147,21 @@ public class Server extends Thread {
         return null;
     } // End searchGroup
 
+    /* ***************************************************************
+    * Metodo: searchClientByIp
+    * Funcao: Given an ip, return a client socket in the DB
+    * Parametros: ip= The desired client id
+    * Retorno: A socket class
+    *************************************************************** */
     public Socket searchClientByIp(String ip) {
+        // Iterate over client DB
         for(Socket client : clients) {
             if(ip.equals(String.valueOf(client.getInetAddress()))) {
+                // Found the client
                 return client;
-            }
-        }
+            } // End if
+        } // End for
 
         return null;
-    }
+    } // End searchClientByIp
 } // End class Server

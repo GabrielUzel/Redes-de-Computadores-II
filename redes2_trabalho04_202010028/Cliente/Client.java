@@ -21,6 +21,7 @@ public class Client extends Thread {
     private String clientName;
     private Socket client;
     private static String message = null;
+    private static String groupId = null;
     private MessageObject messageObject;
 
     // Constructors
@@ -52,9 +53,14 @@ public class Client extends Thread {
                     while(true) {
                         try {
                             MessageObject messageObject = (MessageObject) receiveMessage.readObject();
+                            String senderIp = messageObject.getClientIp();
                             String receivedString = messageObject.getMessage();
-                            String clientName = messageObject.getClientName();
-                            GroupController.addMessageFromOtherUser(receivedString, clientName); // Update ui
+                            String senderName = messageObject.getClientName();
+                            String groupId = messageObject.getGroupId();
+
+                            System.out.println(client.getLocalAddress().getHostAddress());
+                            System.out.println(senderIp);
+                            GroupController.addMessageFromOtherUser(receivedString, senderName, groupId); // Update ui
                         } catch(IOException e) {
                             e.printStackTrace();
                         } catch (ClassNotFoundException e) {
@@ -68,7 +74,7 @@ public class Client extends Thread {
             while(true) {
                 Thread.sleep(1000);
                 if(message != null) { // If true, user sent a new message
-                    messageObject = new MessageObject(message, String.valueOf(client.getLocalAddress().getHostAddress()), clientName);
+                    messageObject = new MessageObject(message, String.valueOf(client.getLocalAddress().getHostAddress()), clientName, groupId);
                     sendMessage.writeObject(messageObject); // Send message to server
                     sendMessage.flush();
                     message = null;
@@ -88,6 +94,9 @@ public class Client extends Thread {
     * Retorno: void
     *************************************************************** */
     public static void sendMessage(String apdu, String group, String messageToSend) {     
+        // Update groupdId static variable
+        groupId = group;
+
         // If the apdu is a join or leave, the message wont be needed   
         if(messageToSend == "") {
             message = apdu + "*" + group;

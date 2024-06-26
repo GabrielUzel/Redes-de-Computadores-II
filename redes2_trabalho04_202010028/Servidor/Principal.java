@@ -44,6 +44,7 @@ public class Principal extends Application {
 
         // Show UI
         stage.setTitle("Server");
+        stage.setResizable(false);
         stage.setScene(mainScene);
         stage.show();        
     } // End start
