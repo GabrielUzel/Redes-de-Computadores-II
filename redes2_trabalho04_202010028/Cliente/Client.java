@@ -58,9 +58,12 @@ public class Client extends Thread {
                             String senderName = messageObject.getClientName();
                             String groupId = messageObject.getGroupId();
 
-                            System.out.println(client.getLocalAddress().getHostAddress());
-                            System.out.println(senderIp);
-                            GroupController.addMessageFromOtherUser(receivedString, senderName, groupId); // Update ui
+                            // Verify if the message received was sent by the current user or other user
+                            if(senderIp.equals("/" + client.getLocalAddress().getHostAddress())) {
+                                GroupController.addMessageFromMe(receivedString, groupId);
+                            } else {
+                                GroupController.addMessageFromOtherUser(receivedString, senderName, groupId); // Update ui
+                            } // Enf if/else
                         } catch(IOException e) {
                             e.printStackTrace();
                         } catch (ClassNotFoundException e) {

@@ -98,14 +98,14 @@ public class Server extends Thread {
                     // Verify if the user is participating in the group they entered
                     if(!searchGroup(groupId).participantExists(clientIp)) {
                         // If isnt participating, add user
-                        MainController.addLog(clientIp + " joined the group " + groupId); 
+                        MainController.addLog(clientIp + ": joined the group " + groupId); 
                         searchGroup(groupId).addParticipant(searchClientByIp(clientIp));
                     } // End if
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {
                     searchGroup(groupId).removeParticipant(searchClientByIp(clientIp));
-                    MainController.addLog(clientIp + "left the group " + groupId);
+                    MainController.addLog(clientIp + ": left the group " + groupId);
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "SEND") {
@@ -113,13 +113,14 @@ public class Server extends Thread {
                     MessageObject messageObject = new MessageObject(message, clientIp, clientName, groupId);
 
                     for(Socket participant : searchGroup(groupId).getParticipants()) {
+                        // Send the message for every participant in group
                         MyObjectOutputStream messageSender = new MyObjectOutputStream(participant.getOutputStream());
                         messageSender.writeObject(messageObject);
                         messageSender.flush();
                         messageSender.reset();
                     } // End for
 
-                    MainController.addLog(clientIp + " in group " + groupId + " >> " + message);
+                    MainController.addLog(clientIp + ": sent message to group " + groupId + " >> " + message);
                 } // End if
             } // End while
         } catch(IOException e) {
