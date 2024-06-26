@@ -12,9 +12,12 @@ package Servidor.models;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import Cliente.util.MessageObject;
+
 public class Group {
     private int id;
     private ArrayList<Socket> participants = new ArrayList<>();
+    private ArrayList<MessageObject> messages = new ArrayList<>();
 
     // Constructor
     public Group(int id) {
@@ -40,6 +43,16 @@ public class Group {
     public void removeParticipant(Socket user) {
         participants.remove(user);
     } // End removeParticipant
+
+    /* ***************************************************************
+    * Metodo: addMessage
+    * Funcao: Store a message in the array
+    * Parametros: message= A new message
+    * Retorno: void
+    *************************************************************** */
+    public void addMessage(MessageObject message) {
+        messages.add(message);
+    } // End addMessage
 
     /* ***************************************************************
     * Metodo: participantExists

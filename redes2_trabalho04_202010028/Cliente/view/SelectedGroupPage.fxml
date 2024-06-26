@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cliente.view.GroupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: white;" stylesheets="@../util/MessageStyle.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cliente.view.GroupController">
    <children>
       <Pane prefHeight="37.0" prefWidth="400.0" style="-fx-background-color: #20d920;">
          <children>
@@ -22,11 +22,11 @@
          </children>
       </Pane>
       <TextField fx:id="sendMessageTextField" layoutX="15.0" layoutY="552.0" onAction="#sendMessage" prefHeight="37.0" prefWidth="369.0" />
-      <ScrollPane fx:id="scrollPaneMain" hbarPolicy="NEVER" layoutX="17.0" layoutY="62.0" prefHeight="470.0" prefWidth="369.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="17.0" layoutY="62.0" prefHeight="470.0" prefWidth="369.0">
          <content>
             <VBox fx:id="vbox_messages" prefHeight="145.0" prefWidth="342.0" />
          </content>
       </ScrollPane>
-      <VBox fx:id="vbox_messages" layoutX="17.0" layoutY="62.0" prefHeight="470.0" prefWidth="369.0" />
+      <VBox fx:id="chat" layoutX="17.0" layoutY="62.0" prefHeight="470.0" prefWidth="369.0" />
    </children>
 </AnchorPane>

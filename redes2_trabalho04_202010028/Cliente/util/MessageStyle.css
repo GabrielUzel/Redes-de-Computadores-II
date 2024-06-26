@@ -1,0 +1,29 @@
+.message-chat {
+    -fx-padding: 5;
+}
+
+.message-sent {
+    -fx-background-color: #b9eebd;
+    -fx-padding: 6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.message-sent-box {
+    -fx-alignment: CENTER_RIGHT;
+    -fx-pref-width: 369;
+    -fx-padding: 5;
+}
+
+.message-received {
+    -fx-background-color: #b9bfee;
+    -fx-padding: 6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.message-received-box {
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-width: 369;
+    -fx-padding: 5;
+}

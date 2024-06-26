@@ -120,6 +120,7 @@ public class Server extends Thread {
                         messageSender.reset();
                     } // End for
 
+                    searchGroup(groupId).addMessage(messageObject);
                     MainController.addLog(clientIp + ": sent message to group " + groupId + " >> " + message);
                 } // End if
             } // End while
@@ -136,7 +137,7 @@ public class Server extends Thread {
     * Parametros: id= The desired group id
     * Retorno: A group class
     *************************************************************** */
-    public Group searchGroup(String id) {
+    public static Group searchGroup(String id) {
         // Iterate over group DB
         for(Group group : groupChats) {
             if(group.getId() == Integer.valueOf(id)) {

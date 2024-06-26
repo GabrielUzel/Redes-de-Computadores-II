@@ -13,16 +13,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import Cliente.Client;
 import Cliente.Principal;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class GroupController implements Initializable {
     @FXML private TextField sendMessageTextField;
     @FXML private Label groupLabel;
     public static Label groupLabel_;
+    @FXML private VBox chat;
+    private static VBox chat_;
 
     /* ***************************************************************
     * Metodo: initialize
@@ -33,6 +38,8 @@ public class GroupController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         groupLabel_ = groupLabel;
+        chat.getStyleClass().add("message-chat");
+        chat_ = chat;
     } // End initialize
 
     /* ***************************************************************
@@ -70,7 +77,15 @@ public class GroupController implements Initializable {
     * Retorno: void
     *************************************************************** */
     public static void addMessageFromMe(String message, String groupId) {
-        System.out.println(message + " >> Group: " + groupId);
+        Platform.runLater(() -> {
+            Label newMessage = new Label(message);
+            newMessage.getStyleClass().add("message-sent");
+
+            HBox newMessageBox = new HBox();
+            newMessageBox.getStyleClass().add("message-sent-box");
+            newMessageBox.getChildren().add(newMessage);
+            chat_.getChildren().add(newMessageBox);
+        });
     } // End addMessageFromMe
 
     /* ***************************************************************
@@ -80,7 +95,15 @@ public class GroupController implements Initializable {
     * Retorno: void
     *************************************************************** */
     public static void addMessageFromOtherUser(String message, String userName, String groupId) {
-        System.out.println(userName + " >> " + message + " >> Group: " + groupId);
+        Platform.runLater(() -> {
+            Label newMessage = new Label(userName + ": " + message);
+            newMessage.getStyleClass().add("message-received");
+
+            HBox newMessageBox = new HBox();
+            newMessageBox.getStyleClass().add("message-received-box");
+            newMessageBox.getChildren().add(newMessage);
+            chat_.getChildren().add(newMessageBox);
+        });
     } // End addMessageFromOtherUser
 
 //     public void sendMessage(){
