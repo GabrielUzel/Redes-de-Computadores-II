@@ -16,6 +16,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import Cliente.util.MessageObject;
+import Cliente.view.GroupController;
 import Servidor.models.*;
 import Servidor.utils.*;
 import Servidor.view.MainController;
@@ -44,7 +45,7 @@ public class Server extends Thread {
     *************************************************************** */
     public void startServer() {        
         try {
-            server = new ServerSocket(port, 50, InetAddress.getByName("10.6.2.218"));            
+            server = new ServerSocket(port);            
             MainController.addLog("Server started on: " + server.getInetAddress().getHostAddress());
 
             while(true) {
@@ -101,6 +102,8 @@ public class Server extends Thread {
                         MainController.addLog(clientIp + ": joined the group " + groupId); 
                         searchGroup(groupId).addParticipant(searchClientByIp(clientIp));
                     } // End if
+
+                    GroupController.updateMessages(searchGroup(groupId), searchClientByIp(clientIp));
                 } // End if
 
                 if(Apdus.getApdu(apduNumber) == "LEAVE") {

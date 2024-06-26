@@ -11,7 +11,6 @@ package Servidor.models;
 
 import java.net.Socket;
 import java.util.ArrayList;
-
 import Cliente.util.MessageObject;
 
 public class Group {

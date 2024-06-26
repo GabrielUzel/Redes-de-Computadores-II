@@ -41,7 +41,7 @@ public class Client extends Thread {
     @Override
     public void run() {
         try {
-            client = new Socket("10.6.2.218", port);
+            client = new Socket("0.0.0.0", port);
             ObjectOutputStream sendMessage = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream receiveMessage = new ObjectInputStream(client.getInputStream());
             sendMessage.flush();
