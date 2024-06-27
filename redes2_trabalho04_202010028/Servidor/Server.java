@@ -119,7 +119,6 @@ public class Server extends Thread {
                         messageSender.reset();
                     } // End for
 
-                    searchGroup(groupId).addMessage(messageObject);
                     MainController.addLog(clientIp + ": sent message to group " + groupId + " >> " + message);
                 } // End if
             } // End while
