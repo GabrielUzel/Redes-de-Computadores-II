@@ -9,12 +9,10 @@
 
 package Cliente.view;
 
-import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Cliente.Client;
 import Cliente.Principal;
-import Servidor.models.Group;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,9 +110,15 @@ public class GroupController implements Initializable {
         });
     } // End addMessageFromOtherUser
 
-    public static void updateMessages(Group group, Socket client) {
+    /* ***************************************************************
+    * Metodo: clearMessages
+    * Funcao: remove all messages from chat
+    * Parametros: void
+    * Retorno: void
+    *************************************************************** */
+    public static void clearMessages() {
         Platform.runLater(() -> {
-            chat_.getChildren().removeAll();
+            chat_.getChildren().clear();
         });
-    }
+    } // End clearMessages
 } // End class GroupController

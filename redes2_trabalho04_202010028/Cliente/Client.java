@@ -77,6 +77,8 @@ public class Client extends Thread {
             while(true) {
                 Thread.sleep(1000);
                 if(message != null) { // If true, user sent a new message
+                    if(message.charAt(0) == '1') GroupController.clearMessages(); // Clear messages as the user enters a group
+
                     messageObject = new MessageObject(message, String.valueOf(client.getLocalAddress().getHostAddress()), clientName, groupId);
                     sendMessage.writeObject(messageObject); // Send message to server
                     sendMessage.flush();
