@@ -45,7 +45,7 @@ public class AlgorithmController implements Initializable {
     @FXML
     void backToMenu(ActionEvent event) {
         Principal.changeSceneMenu();
-    }
+    } // End backToMenu
 
     /* ***************************************************************
     * Metodo: startAlgorithm

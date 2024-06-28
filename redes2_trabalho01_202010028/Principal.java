@@ -27,8 +27,8 @@ public class Principal extends Application {
     * Parametros: args= Arguments to start the program
     * Retorno: void
     *************************************************************** */
-    public static void main (String [] args) {
-        launch (args);
+    public static void main(String [] args) {
+        launch(args);
     } // End main
 
     /* ***************************************************************

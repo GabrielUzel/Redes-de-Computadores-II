@@ -29,9 +29,10 @@ public class Node {
         distanceTable.add(new Structure(8, Integer.MAX_VALUE - 10, null));
         distanceTable.add(new Structure(9, Integer.MAX_VALUE - 10, null));
 
+        // Set first node distance as 0  
         for(Structure index : this.getDistanceTable()) {
             if(index.getNodeId() == id) index.setDistance(0);
-        }
+        } // End for
     } // End constructor
 
     /* ***************************************************************

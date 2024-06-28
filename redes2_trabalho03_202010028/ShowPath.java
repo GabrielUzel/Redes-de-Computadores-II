@@ -22,7 +22,7 @@ public class ShowPath {
         this.receiverId = receiverId;
         this.nodes = nodes;
         this.edges = edges;
-    }
+    } // End constructor
 
     /* ***************************************************************
     * Metodo: algorithm
@@ -41,7 +41,7 @@ public class ShowPath {
         for(Node node : nodes) {
             if(node.getId() == senderId) senderNode = node;
             if(node.getId() == receiverId) receiverNode = node;
-        }
+        } // End for
 
         // If the sender or the receiver is not a active node, throw exception
         if(senderNode == null || receiverNode == null) throw new WrongInputException("É impossível enviar esse pacote");

@@ -23,7 +23,7 @@ public class Dijasktra {
         this.nodes = nodes;
         this.senderId = senderId;
         this.receiverId = receiverId;
-    }
+    } // End constructor
 
     /* ***************************************************************
     * Metodo: algorithm

@@ -14,7 +14,7 @@ public class DistanceVectorAlgorithm {
     // Constructor
     public DistanceVectorAlgorithm(ArrayList<Node> nodes) {
         this.nodes = nodes;
-    }
+    } // End constructor
 
     /* ***************************************************************
     * Metodo: algorithm
@@ -47,8 +47,8 @@ public class DistanceVectorAlgorithm {
             for(Structure index : node.getDistanceTable()) { // Iterate over current node distance table
                 // Verify if there is a infinite ditance on a active node
                 if(index.getDistance() == Integer.MAX_VALUE - 10 && nodeExistsInCurrentUpdate(index.getNodeId())) return false;
-            }
-        }
+            } // End for
+        } // End for
 
         return true;
     } // End verifyAllTablesAreCompleted
@@ -62,7 +62,7 @@ public class DistanceVectorAlgorithm {
     public boolean nodeExistsInCurrentUpdate(int id) {
         for(Node node : nodes) {
             if(node.getId() == id) return true;
-        }
+        } // End for
 
         return false;
     } // End nodeExistsInCurrentUpdate

@@ -115,7 +115,7 @@ public class MainController implements Initializable {
             dijasktra.algorithm();
         } catch(WrongInputException e) {
             warningLabel.setVisible(true);
-        } // End try catch
+        } // End try/catch
 
         showPath(dijasktra.getBestPath());
     } // End startAlgorithm

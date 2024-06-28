@@ -17,10 +17,15 @@ import Cliente.util.MessageObject;
 import Cliente.view.GroupController;
 
 public class Client extends Thread {
+    // Server informations
     private String serverIp;
     private int port = 7327;
+
+    // CLient informations
     private String clientName;
     private Socket client;
+
+    // Messages informations
     private static String message = null;
     private static String groupId = null;
     private MessageObject messageObject;
@@ -32,7 +37,7 @@ public class Client extends Thread {
     public Client(String clientName, String serverIp) {
         this.serverIp = serverIp;
         this.clientName = clientName;
-    }
+    } // End constructors
 
     /* ***************************************************************
     * Metodo: run

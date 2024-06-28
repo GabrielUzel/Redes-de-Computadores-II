@@ -20,10 +20,15 @@ import Servidor.utils.*;
 import Servidor.view.MainController;
 
 public class Server extends Thread {
+    // Server informations
     private static int port = 7327;
     private ServerSocket server;
     private Socket client;
+
+    // Message information
     private MessageObject messageObject; // Object that will contain received messages
+
+    // Objects to store some information
     private static final ArrayList<Socket> clients = new ArrayList<>();
     private static ArrayList<Group> groupChats = new ArrayList<>();
 
@@ -33,7 +38,7 @@ public class Server extends Thread {
     }
     public Server() {
 
-    }
+    } // End constructors
 
     /* ***************************************************************
     * Metodo: startServer

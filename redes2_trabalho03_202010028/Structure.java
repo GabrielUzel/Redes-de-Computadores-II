@@ -16,7 +16,7 @@ public class Structure implements Cloneable  {
         this.nodeId = nodeId;
         this.distance = distance;
         this.nodeToSendPackage = nodeToSendPackage;
-    }
+    } // End constructor
 
     /* ***************************************************************
     * Metodo: clone
