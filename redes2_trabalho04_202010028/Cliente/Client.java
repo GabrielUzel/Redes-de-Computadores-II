@@ -17,8 +17,8 @@ import Cliente.util.MessageObject;
 import Cliente.view.GroupController;
 
 public class Client extends Thread {
-    private static String serverIp;
-    private static int port = 7327;
+    private String serverIp;
+    private int port = 7327;
     private String clientName;
     private Socket client;
     private static String message = null;
