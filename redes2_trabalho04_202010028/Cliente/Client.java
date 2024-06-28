@@ -17,6 +17,7 @@ import Cliente.util.MessageObject;
 import Cliente.view.GroupController;
 
 public class Client extends Thread {
+    private static String serverIp;
     private static int port = 7327;
     private String clientName;
     private Socket client;
@@ -28,7 +29,8 @@ public class Client extends Thread {
     public Client(Socket client) {
         this.client = client;
     }
-    public Client(String clientName) {
+    public Client(String clientName, String serverIp) {
+        this.serverIp = serverIp;
         this.clientName = clientName;
     }
 
@@ -41,7 +43,7 @@ public class Client extends Thread {
     @Override
     public void run() {
         try {
-            client = new Socket("127.0.0.1", port);
+            client = new Socket(serverIp, port);
             ObjectOutputStream sendMessage = new ObjectOutputStream(client.getOutputStream());
             ObjectInputStream receiveMessage = new ObjectInputStream(client.getInputStream());
             sendMessage.flush();

@@ -20,5 +20,6 @@
       </Label>
       <Button fx:id="connectServerButton" layoutX="136.0" layoutY="549.0" mnemonicParsing="false" onAction="#connectToServer" style="-fx-background-color: #45f745; -fx-cursor: hand;" text="Conectar ao servidor" />
       <TextField fx:id="clientNameTextField" alignment="CENTER" layoutX="84.0" layoutY="511.0" onAction="#connectToServer" prefHeight="24.0" prefWidth="258.0" promptText="Seu nome" />
+      <TextField fx:id="serverIpTextField" alignment="CENTER" layoutX="84.0" layoutY="475.0" prefHeight="24.0" prefWidth="258.0" promptText="Ip do servidor" />
    </children>
 </AnchorPane>

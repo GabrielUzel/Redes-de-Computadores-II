@@ -10,6 +10,7 @@
 package Cliente.view;
 
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import Cliente.Client;
 import Cliente.Principal;
@@ -23,6 +24,8 @@ import javafx.scene.control.TextField;
 
 public class ClientController implements Initializable{
     // Fxml variables
+    @FXML private TextField clientNameTextField;
+    @FXML private TextField serverIpTextField;
     @FXML private Button connectServerButton;
     @FXML private Button group1Button;
     @FXML private Button group2Button;
@@ -39,7 +42,6 @@ public class ClientController implements Initializable{
     private static Button leaveGroup3_;
     private static Button leaveGroup4_;
     private static Button leaveGroup5_;
-    @FXML private TextField clientNameTextField;
 
     /* ***************************************************************
     * Metodo: initialize
@@ -65,11 +67,14 @@ public class ClientController implements Initializable{
     @FXML
     void connectToServer(ActionEvent event) {
         String clientName = clientNameTextField.getText();
+        String serverIp = serverIpTextField.getText();
 
-        // Dont start server if the user doesnt input a name
+        // Dont start server if the user doesnt input a name or the server ip
+        if(serverIp.equals("")) return;
         if(clientName.equals("")) return;
 
-        Client client = new Client(clientName);
+        Client client = new Client(clientName, serverIp);
+
         new Thread(client).start();
         Principal.changeSceneGroups();
     } // End connectToServer

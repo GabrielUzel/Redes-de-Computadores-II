@@ -44,7 +44,7 @@ public class Server extends Thread {
     public void startServer() {        
         try {
             server = new ServerSocket(port);            
-            MainController.addLog("Server started on: " + server.getInetAddress().getHostAddress());
+            MainController.addLog("Server started:");
 
             while(true) {
                 Socket client = server.accept();
