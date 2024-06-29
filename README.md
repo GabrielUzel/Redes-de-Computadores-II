@@ -21,6 +21,11 @@ Aqui está implementado o algoritmo de melhor caminho de Dijasktra. Dado um rote
 Nesse algoritmo, cada roteador possui uma tabela de roteamento. Nessa tabela terá, para todos os roteadores do backbone, a distância para chegar a cada roteador e o vizinho para quem o pacote será enviado caso chegue um pacote. A priori, cada roteador possui informação apenas da distância a cada vizinho, então recebe de seus vizinhos suas próprias tabelas de roteamento. As distâncias para os outros roteadores é inicialmente infinito, mas ao receber as tebelas de roteamento de seus vizinhos o roteador atualiza sua tabela com os menores valores. Por fim, isso se repete até que todas as tabelas estejam completas.
 </div>
 
+## App de mensagens instantâneas
+<div align="justify">
+Utilizando uma conexão TCP com ServerScoket do java, aqui foi criado um app de mensagens instantâneas em que, ao se conectar ao servidor, os usuários podem mandar mensagens entre si por computadores diferentes. Foi utilizada a estrutura cliente/servidor. os usuários podem mandar mensagem entre si caso entrem no mesmo grupo de usuários.
+</div>
+
 ## Ferramentas
 - Linguagem: Java
 - Interface: Javafx
@@ -28,7 +33,8 @@ Nesse algoritmo, cada roteador possui uma tabela de roteamento. Nessa tabela ter
 
 ## Para testar os projetos
 <div align="justify">
-Será necessária a instalação do Java e do Javafx. Procure o caminho da pasta "lib" do javafx e o copie. 
+Será necessária a instalação do Java e do Javafx. Procure o caminho da pasta "lib" do javafx e o copie.
+</div>
 
 ### Rode o programa
 ```shell
