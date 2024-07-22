@@ -7,7 +7,7 @@
 * Funcao...........: Store a group information
 *************************************************************** */
 
-package Servidor.models;
+package models;
 
 import java.net.Socket;
 import java.util.ArrayList;

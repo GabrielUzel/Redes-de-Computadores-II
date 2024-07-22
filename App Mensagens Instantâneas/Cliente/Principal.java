@@ -6,10 +6,7 @@
 * Nome.............: Principal
 * Funcao...........: Start the client interface
 *************************************************************** */
-package Cliente;
-
 import java.io.IOException;
-import Cliente.view.ClientController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,9 +44,9 @@ public class Principal extends Application {
         stage = currentStage;
 
         // Open file and set scene
-        Parent mainParent = FXMLLoader.load(getClass().getResource("view/ClientPage.fxml"));
-        Parent groupsParent = FXMLLoader.load(getClass().getResource("view/GroupsPage.fxml"));
-        Parent selectedGroupParent = FXMLLoader.load(getClass().getResource("view/SelectedGroupPage.fxml"));
+        Parent mainParent = FXMLLoader.load(getClass().getResource("ClientPage.fxml"));
+        Parent groupsParent = FXMLLoader.load(getClass().getResource("GroupsPage.fxml"));
+        Parent selectedGroupParent = FXMLLoader.load(getClass().getResource("SelectedGroupPage.fxml"));
 
         // Set scenes
         mainScene = new Scene(mainParent);

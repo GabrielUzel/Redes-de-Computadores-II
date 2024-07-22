@@ -6,15 +6,11 @@
 * Nome.............: Client
 * Funcao...........: Receive and send information
 *************************************************************** */
-
-package Cliente;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import Cliente.util.MessageObject;
-import Cliente.view.GroupController;
+import utils.MessageObject;
 
 public class Client extends Thread {
     // Server informations

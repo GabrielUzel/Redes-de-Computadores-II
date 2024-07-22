@@ -6,14 +6,9 @@
 * Nome.............: ClientController
 * Funcao...........: Controls the client user interface
 *************************************************************** */
-
-package Cliente.view;
-
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ResourceBundle;
-import Cliente.Client;
-import Cliente.Principal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

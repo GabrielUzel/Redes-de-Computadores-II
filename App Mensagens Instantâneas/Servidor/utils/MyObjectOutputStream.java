@@ -7,7 +7,7 @@
 * Funcao...........: Avoid ObjectOutputStream type coid exception
 *************************************************************** */
 
-package Servidor.utils;
+package utils;
 
 import java.io.*;
  

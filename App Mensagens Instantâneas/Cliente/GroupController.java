@@ -6,13 +6,8 @@
 * Nome.............: ClientController
 * Funcao...........: Controls the chat user interface
 *************************************************************** */
-
-package Cliente.view;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-import Cliente.Client;
-import Cliente.Principal;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

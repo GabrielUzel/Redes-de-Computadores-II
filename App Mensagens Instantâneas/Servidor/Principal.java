@@ -6,8 +6,6 @@
 * Nome.............: Principal
 * Funcao...........: Start the server interface
 *************************************************************** */
-package Servidor;
-
 import java.io.IOException;
 import Servidor.view.MainController;
 import javafx.application.Application;
@@ -39,7 +37,7 @@ public class Principal extends Application {
         MainController controller = new MainController();
 
         // Open file and set scene
-        Parent mainParent = FXMLLoader.load(getClass().getResource("view/ServerPage.fxml"));
+        Parent mainParent = FXMLLoader.load(getClass().getResource("ServerPage.fxml"));
         Scene mainScene = new Scene(mainParent);
 
         // Show UI

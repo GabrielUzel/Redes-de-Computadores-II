@@ -6,8 +6,6 @@
 * Nome.............: MainController
 * Funcao...........: Controls server user interface
 *************************************************************** */
-package Servidor.view;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import Servidor.Server;

@@ -6,7 +6,7 @@
 * Nome.............: Apdus
 * Funcao...........: Store the apdus that will be used by server
 *************************************************************** */
-package Servidor.utils;
+package utils;
 
 public enum Apdus {
     // Apdus values on string

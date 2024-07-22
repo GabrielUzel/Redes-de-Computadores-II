@@ -7,7 +7,7 @@
 * Funcao...........: Organize the structure of the object sent e received by the server
 *************************************************************** */
 
-package Cliente.util;
+package utils;
 
 import java.io.Serializable;
 
