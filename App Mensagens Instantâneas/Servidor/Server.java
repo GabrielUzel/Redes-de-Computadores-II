@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import Cliente.util.MessageObject;
+import utils.MessageObject;
 import models.*;
 import utils.*;
 

@@ -8,7 +8,6 @@
 *************************************************************** */
 import java.net.URL;
 import java.util.ResourceBundle;
-import Servidor.Server;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

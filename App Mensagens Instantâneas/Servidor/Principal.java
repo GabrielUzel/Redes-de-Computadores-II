@@ -7,7 +7,6 @@
 * Funcao...........: Start the server interface
 *************************************************************** */
 import java.io.IOException;
-import Servidor.view.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
