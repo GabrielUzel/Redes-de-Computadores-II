@@ -39,6 +39,8 @@ Será necessária a instalação do Java e do Javafx. Procure o caminho da pasta
 ### Rode o programa
 ```shell
 javac --module-path \"YourPath/lib\" --add-modules javafx.controls,javafx.fxml Principal.java
+```
+```shell
 java --module-path \"YourPath/lib\" --add-modules javafx.controls,javafx.fxml Principal
 ```
 </div>
