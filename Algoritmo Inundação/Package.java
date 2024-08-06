@@ -66,8 +66,8 @@ public class Package extends Thread {
             // At the end of the animation, set the icon invisible and return to the initial coordinates
             animation.setOnFinished(event -> {
                 icon.setVisible(false);
-                    icon.setTranslateX(0);
-                    icon.setTranslateY(0);
+                icon.setTranslateX(0);
+                icon.setTranslateY(0);
             });
 
             animation.play(); // Start animation
